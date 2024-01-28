@@ -193,6 +193,8 @@ var graphina_localize = {"ajaxurl":"https:\/\/mammothtoken.xyz\/wp-admin\/admin-
 							<div class="elementor-element elementor-element-eab2a12 e-con-full e-flex e-con e-parent" data-id="eab2a12" data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;,&quot;content_width&quot;:&quot;full&quot;,&quot;tmea_shape_divider_top&quot;:&quot;none&quot;,&quot;tmea_shape_divider_bottom&quot;:&quot;none&quot;,&quot;_ha_eqh_enable&quot;:false}" data-core-v316-plus="true">
 
 
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -217,7 +219,7 @@ var graphina_localize = {"ajaxurl":"https:\/\/mammothtoken.xyz\/wp-admin\/admin-
             margin: 0;
             padding: 0;
             white-space: nowrap;
-            animation: ticker-slide 20s linear infinite; /* Adjust animation speed as needed */
+            animation: ticker-slide 20s linear forwards; /* Adjust animation speed as needed */
         }
 
         .ticker-bar ul li {
@@ -231,6 +233,11 @@ var graphina_localize = {"ajaxurl":"https:\/\/mammothtoken.xyz\/wp-admin\/admin-
             100% { transform: translateX(-100%); }
         }
 
+        /* Pause animation by default */
+        .paused {
+            animation-play-state: paused;
+        }
+
         /* Media query for mobile devices */
         @media screen and (min-width: 768px) {
             .ticker-bar {
@@ -241,14 +248,26 @@ var graphina_localize = {"ajaxurl":"https:\/\/mammothtoken.xyz\/wp-admin\/admin-
 </head>
 <body>
     <div class="ticker-bar">
-        <ul>
+        <ul id="tickerList" class="paused">
             <li>Slinky Price: $1000</li>
             <li>Rebase Rate: 10%</li>
             <li>Burn Rate: 0.5%</li>
             <li>Total Supply: 100</li>
         </ul>
     </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var tickerList = document.getElementById("tickerList");
+
+            // Reset animation state after one full cycle
+            tickerList.addEventListener("animationiteration", function() {
+                tickerList.classList.remove("paused");
+            });
+        });
+    </script>
 </body>
+</html>
 
 
 
