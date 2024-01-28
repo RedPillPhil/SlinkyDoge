@@ -246,15 +246,12 @@ var graphina_localize = {"ajaxurl":"https:\/\/mammothtoken.xyz\/wp-admin\/admin-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Token Information</title>
+    <title>Information Bar</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.5.2/web3.min.js"></script>
 </head>
 <body>
     <div class="information-bar">
         <ul>
-            <li>Price: <span class="number" id="price">$0.00</span></li>
-            <li>Rebase: <span class="number" id="rebase">0%</span></li>
-            <li>Burn: <span class="number" id="burn">0.5%</span></li>
             <li>Total Supply: <span class="number" id="totalSupply">Loading...</span></li>
         </ul>
     </div>
@@ -263,14 +260,13 @@ var graphina_localize = {"ajaxurl":"https:\/\/mammothtoken.xyz\/wp-admin\/admin-
         window.addEventListener('DOMContentLoaded', async () => {
             try {
                 // Initialize Web3 with the provider for the desired network
-                const web3 = new Web3({
-                    provider: new Web3.providers.HttpProvider('https://rpc.hypra.network'),
-                    chainId: 622277 // Update with the correct chain ID
-                });
+                const web3 = new Web3('https://rpc.hypra.network'); // Update with the RPC URL of your network
 
                 // Define the contract address and ABI
                 const contractAddress = '0x60F7bfa8d6B5eC188F5498308Edca02e26236c39'; // Update with the contract address
-                const contractABI = [{"constant":true,"inputs":[],"name":"totalSupply","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"}];
+                const contractABI = [
+                    [{"constant":true,"inputs":[],"name":"totalSupply","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"}]
+                ];
 
                 // Initialize the contract instance
                 const contractInstance = new web3.eth.Contract(contractABI, contractAddress);
@@ -289,6 +285,7 @@ var graphina_localize = {"ajaxurl":"https:\/\/mammothtoken.xyz\/wp-admin\/admin-
     </script>
 </body>
 </html>
+
 
 
 
