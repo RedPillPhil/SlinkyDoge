@@ -198,13 +198,13 @@ var graphina_localize = {"ajaxurl":"https:\/\/mammothtoken.xyz\/wp-admin\/admin-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ticker Bar</title>
+    <title>Information Bar</title>
     <style>
-        /* CSS for the ticker bar */
-        .ticker-bar {
+        /* CSS for the information bar */
+        .information-bar {
             background-color: #000;
-            color: #fff;
-            font-size: 14px;
+            color: #FFFF00; /* Yellow text color for words */
+            font-size: 12px; /* Reduced font size */
             padding: 8px 0;
             position: fixed;
             top: 0;
@@ -212,60 +212,45 @@ var graphina_localize = {"ajaxurl":"https:\/\/mammothtoken.xyz\/wp-admin\/admin-
             width: 100%;
             z-index: 9999;
             overflow: hidden; /* Hide overflow */
+            text-shadow: 0 0 10px #FFFF00; /* Glowing text effect */
+            text-align: center; /* Center the text horizontally */
+            font-weight: bold; /* Make the text bold */
         }
 
-        .ticker-bar ul {
+        .information-bar ul {
             list-style: none;
             margin: 0;
             padding: 0;
             white-space: nowrap;
-            animation: ticker-slide 20s linear forwards; /* Adjust animation speed as needed */
         }
 
-        .ticker-bar ul li {
+        .information-bar ul li {
             display: inline-block;
             padding: 0 10px;
         }
 
-        /* Define animation for sliding */
-        @keyframes ticker-slide {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
-        }
-
-        /* Pause animation by default */
-        .paused {
-            animation-play-state: paused;
+        /* Style for numbers */
+        .information-bar ul li span.number {
+            color: #FFF; /* White color for numbers */
         }
 
         /* Media query for mobile devices */
         @media screen and (min-width: 768px) {
-            .ticker-bar {
-                display: none; /* Hide ticker bar on screens larger than mobile */
+            .information-bar {
+                display: none; /* Hide information bar on screens larger than mobile */
             }
         }
     </style>
 </head>
 <body>
-    <div class="ticker-bar">
-        <ul id="tickerList" class="paused">
-            <li>Slinky Price: $1000</li>
-            <li>Rebase Rate: 10%</li>
-            <li>Burn Rate: 0.5%</li>
-            <li>Total Supply: 100</li>
+    <div class="information-bar">
+        <ul>
+            <li>Slinky Price: <span class="number">$1000</span></li>
+            <li>Rebase Rate: <span class="number">10%</span></li>
+            <li>Burn Rate: <span class="number">0.5%</span></li>
+            <li>Total Supply: <span class="number">100</span></li>
         </ul>
     </div>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var tickerList = document.getElementById("tickerList");
-
-            // Reset animation state after one full cycle
-            tickerList.addEventListener("animationiteration", function() {
-                tickerList.classList.remove("paused");
-            });
-        });
-    </script>
 </body>
 </html>
 
