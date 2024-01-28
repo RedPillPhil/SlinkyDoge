@@ -193,31 +193,35 @@ var graphina_localize = {"ajaxurl":"https:\/\/mammothtoken.xyz\/wp-admin\/admin-
 							<div class="elementor-element elementor-element-eab2a12 e-con-full e-flex e-con e-parent" data-id="eab2a12" data-element_type="container" data-settings="{&quot;background_background&quot;:&quot;classic&quot;,&quot;content_width&quot;:&quot;full&quot;,&quot;tmea_shape_divider_top&quot;:&quot;none&quot;,&quot;tmea_shape_divider_bottom&quot;:&quot;none&quot;,&quot;_ha_eqh_enable&quot;:false}" data-core-v316-plus="true">
 
 
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ticker Bar</title>
     <style>
         /* CSS for the ticker bar */
-        .ticker-bar {
+        .ticker-box {
             background-color: #000;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .ticker-bar {
             color: #fff;
             font-size: 14px;
             padding: 8px 0;
+            white-space: nowrap;
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            z-index: 9999;
-            overflow: hidden; /* Hide overflow */
+            animation: ticker-slide 20s linear infinite; /* Adjust animation speed as needed */
         }
 
         .ticker-bar ul {
             list-style: none;
             margin: 0;
             padding: 0;
-            white-space: nowrap;
-            animation: ticker-slide 20s linear infinite; /* Adjust animation speed as needed */
         }
 
         .ticker-bar ul li {
@@ -233,22 +237,26 @@ var graphina_localize = {"ajaxurl":"https:\/\/mammothtoken.xyz\/wp-admin\/admin-
 
         /* Media query for mobile devices */
         @media screen and (min-width: 768px) {
-            .ticker-bar {
-                display: none; /* Hide ticker bar on screens larger than mobile */
+            .ticker-box {
+                display: none; /* Hide ticker box on screens larger than mobile */
             }
         }
     </style>
 </head>
 <body>
-    <div class="ticker-bar">
-        <ul>
-            <li>Slinky Price: $1000</li>
-            <li>Rebase Rate: 10%</li>
-            <li>Burn Rate: 0.5%</li>
-            <li>Total Supply: 100</li>
-        </ul>
+    <div class="ticker-box">
+        <div class="ticker-bar">
+            <ul>
+                <li>Slinky Price: $1000</li>
+                <li>Rebase Rate: 10%</li>
+                <li>Burn Rate: 0.5%</li>
+                <li>Total Supply: 100</li>
+            </ul>
+        </div>
     </div>
 </body>
+</html>
+
 
 
 
