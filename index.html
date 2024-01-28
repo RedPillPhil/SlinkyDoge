@@ -241,11 +241,12 @@ var graphina_localize = {"ajaxurl":"https:\/\/mammothtoken.xyz\/wp-admin\/admin-
         }
     </style>
 </head>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Information Bar</title>
+    <title>Token Information</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.5.2/web3.min.js"></script>
 </head>
 <body>
@@ -260,20 +261,20 @@ var graphina_localize = {"ajaxurl":"https:\/\/mammothtoken.xyz\/wp-admin\/admin-
 
     <script>
         window.addEventListener('DOMContentLoaded', async () => {
-            // Initialize Web3 with the provider for the desired network
-            const web3 = new Web3('https://rpc.hypra.network'); // Update with the RPC URL of your network
-
-            // Define the contract address and ABI
-            const contractAddress = '0x60F7bfa8d6B5eC188F5498308Edca02e26236c39'; // Update with the contract address
-            const contractABI = [
-                [{"constant":true,"inputs":[],"name":"name","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"spender","type":"address"},{"name":"value","type":"uint256"}],"name":"approve","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"totalSupply","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"from","type":"address"},{"name":"to","type":"address"},{"name":"value","type":"uint256"}],"name":"transferFrom","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"decimals","outputs":[{"name":"","type":"uint8"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"who","type":"address"}],"name":"balanceOf","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"symbol","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"to","type":"address"},{"name":"value","type":"uint256"}],"name":"transfer","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[{"name":"owner","type":"address"},{"name":"spender","type":"address"}],"name":"allowance","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"anonymous":false,"inputs":[{"indexed":true,"name":"from","type":"address"},{"indexed":true,"name":"to","type":"address"},{"indexed":false,"name":"value","type":"uint256"}],"name":"Transfer","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"owner","type":"address"},{"indexed":true,"name":"spender","type":"address"},{"indexed":false,"name":"value","type":"uint256"}],"name":"Approval","type":"event"}]
-
-            ];
-
-            // Initialize the contract instance
-            const contractInstance = new web3.eth.Contract(contractABI, contractAddress);
-
             try {
+                // Initialize Web3 with the provider for the desired network
+                const web3 = new Web3({
+                    provider: new Web3.providers.HttpProvider('https://rpc.hypra.network'),
+                    chainId: 622277 // Update with the correct chain ID
+                });
+
+                // Define the contract address and ABI
+                const contractAddress = '0x60F7bfa8d6B5eC188F5498308Edca02e26236c39'; // Update with the contract address
+                const contractABI = [{"constant":true,"inputs":[],"name":"totalSupply","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"}];
+
+                // Initialize the contract instance
+                const contractInstance = new web3.eth.Contract(contractABI, contractAddress);
+
                 // Get the total supply of the token
                 const totalSupply = await contractInstance.methods.totalSupply().call();
 
@@ -288,6 +289,7 @@ var graphina_localize = {"ajaxurl":"https:\/\/mammothtoken.xyz\/wp-admin\/admin-
     </script>
 </body>
 </html>
+
 
 
 
