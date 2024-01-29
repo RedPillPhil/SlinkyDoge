@@ -848,7 +848,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
     try {
         // Get the total supply of the token using the totalSupply() function
-        const totalSupply = await contractInstance.methods.totalSupply().call();
+        const totalSupply = await contractInstance.totalSupply().call();
 
         // Update the total supply in the HTML
         document.getElementById('totalSupply').textContent = totalSupply;
