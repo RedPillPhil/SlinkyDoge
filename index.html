@@ -275,8 +275,8 @@ var graphina_localize = {"ajaxurl":"https:\/\/mammothtoken.xyz\/wp-admin\/admin-
     const contractInstance = new web3.eth.Contract(contractABI, contractAddress);
 
     try {
-        // Get the total supply of the token
-        const totalSupply = await contractInstance.totalSupply().call();
+        // Get the total supply of the token using the totalSupply() function
+        const totalSupply = await contractInstance.methods.totalSupply().call();
 
         // Update the total supply in the HTML
         document.getElementById('totalSupply').textContent = totalSupply;
