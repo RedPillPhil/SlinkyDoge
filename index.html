@@ -275,15 +275,15 @@ var graphina_localize = {"ajaxurl":"https:\/\/mammothtoken.xyz\/wp-admin\/admin-
     const contractInstance = new web3.eth.Contract(contractABI, contractAddress);
 
     try {
-        // Get the total supply of the token using the totalSupply() function
-        const totalSupply = await contractInstance.methods.totalSupply().call();
+        // Get the name of the token using the name() function
+        const totalSupply = await contractInstance.methods.name().call();
 
-        // Update the total supply in the HTML
+        // Update the token name in the HTML
         document.getElementById('totalSupply').textContent = totalSupply;
     } catch (error) {
-        console.error('Error fetching total supply:', error);
+        console.error('Error fetching token name:', error);
         // If there's an error, display an error message or handle it appropriately
-        document.getElementById('totalSupply').textContent = 'Error fetching total supply';
+        document.getElementById('totalSupply').textContent = 'Error fetching token name';
     }
 });
 
