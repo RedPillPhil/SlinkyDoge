@@ -327,7 +327,7 @@ var graphina_localize = {"ajaxurl":"https:\/\/mammothtoken.xyz\/wp-admin\/admin-
                 const multipliedPrice = hypraPriceUSD * priceOfToken1;
 
                 // Limit the number of decimals to 5
-                const multipliedPriceLimited = multipliedPrice.toFixed(5);
+                const multipliedPriceLimited = multipliedPrice.toFixed(3);
 
                 // Update the first price element with the price of HYP
                 const priceElement = document.getElementById('price');
@@ -335,7 +335,7 @@ var graphina_localize = {"ajaxurl":"https:\/\/mammothtoken.xyz\/wp-admin\/admin-
 
                 // Update the second price element with the multiplied price
                 const price2Element = document.getElementById('price2');
-				price2Element.textContent = `SLINK: $${multipliedPriceLimited} USD (${priceOfToken1.toFixed(5)} HYP)`;
+				price2Element.textContent = `$${multipliedPriceLimited} USD (${priceOfToken1.toFixed(3)} HYP)`;
 				const price3Element = document.getElementById('price3');
 				price3Element.textContent = `SLINK: $${multipliedPriceLimited} USD (${priceOfToken1.toFixed(5)} HYP)`;
 
