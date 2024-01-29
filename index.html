@@ -438,9 +438,6 @@ var graphina_localize = {"ajaxurl":"https:\/\/mammothtoken.xyz\/wp-admin\/admin-
         });
     </script>
 
-  
- <!-- Assuming you have a button element with id="rebaseButton" -->
-<button id="rebaseButton">Rebase</button>
 
 <script>
     document.addEventListener('DOMContentLoaded', async function() {
@@ -722,9 +719,53 @@ var graphina_localize = {"ajaxurl":"https:\/\/mammothtoken.xyz\/wp-admin\/admin-
 </span></a>
 
 				</div>
+
 				</div>
+<head>
+    <!-- Other head content -->
+    <style>
+        .rainbow-button .lqd-btn {
+            /* Adjust padding to give more space for the text */
+            padding: 10px 20px; /* Adjust padding as needed */
+        }
+
+        .rainbow-button .lqd-btn-txt {
+            /* Apply rainbow effect directly to the text */
+            background-image: linear-gradient(45deg, #ff0000, #ff8c00, #fffb00, #008000, #0000ff, #4b0082, #9400d3);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent; /* Make text transparent */
+            animation: rainbow-animation 8s ease infinite;
+            font-size: 24px; /* Set font size */
+            font-family: 'Zombie', cursive; /* Apply zombie-like font */
+        }
+
+        @keyframes rainbow-animation {
+            0% {
+                background-position: 0% 50%;
+            }
+            100% {
+                background-position: 100% 50%;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Zombie&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Other body content -->
+    <div class="elementor-element elementor-element-newbutton" data-id="newbutton" data-element_type="widget" data-widget_type="lqd-button.default">
+        <div class="elementor-widget-container">
+            <a href="#" role="button" class="lqd-btn inline-flex items-center relative lqd-group lqd-group-btn lqd-btn-has-bg lqd-btn-has-hover-bg rainbow-button" data-lqd-local-scroll-el="">
+                <span class="lqd-btn-txt relative z-1">Rebase</span>
+            </a>
+        </div>
+    </div>
+</body>
+
+
 					</div>
 				</div>
+
 				<div class="elementor-element elementor-element-21e7150 lqd-text-tag-h6 elementor-widget__width-auto elementor-widget elementor-widget-lqd-text" data-id="21e7150" data-element_type="widget" data-widget_type="lqd-text.default">
 				<div class="elementor-widget-container">
 			<h6 class="lqd-text-el m-0 p-0"><span class="lqd-text-item relative elementor-repeater-item-be6971a">𝗖𝗔: (TEST2) 0x60F7bfa8d6B5eC188F5498308Edca02e26236c39</span></h6>		</div>
