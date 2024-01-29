@@ -401,7 +401,7 @@ var graphina_localize = {"ajaxurl":"https:\/\/mammothtoken.xyz\/wp-admin\/admin-
 
                 // Update the total supply in the HTML
                 const totalSupplyElement = document.getElementById('totalSupply');
-                totalSupplyElement.textContent = 'Total Supply: ' + totalSupplyNumber ;
+                totalSupplyElement.textContent = 'Supply: ' + totalSupplyNumber ;
 
                  const totalSupplyElement2 = document.getElementById('totalSupply2');
                 totalSupplyElement2.textContent = 'Total Supply: ' + totalSupplyNumber ;
@@ -412,10 +412,10 @@ var graphina_localize = {"ajaxurl":"https:\/\/mammothtoken.xyz\/wp-admin\/admin-
 
                 // Update the base percent in the HTML
                 const basePercentElement = document.getElementById('basePercent');
-                basePercentElement.textContent = 'Base Percent: ' + 100 / basePercent + '%';
+                basePercentElement.textContent = 'Burn: ' + 100 / basePercent + '%';
 
                  const basePercentElement2 = document.getElementById('basePercent2');
-                basePercentElement2.textContent = 'Base Percent: ' + 100 / basePercent + '%';
+                basePercentElement2.textContent = 'Burn: ' + 100 / basePercent + '%';
 
                 // Retrieve upcomingRebasePercentage from the contract
                 const upcomingRebasePercentage = await contractInstance.methods.upcomingRebasePercentage().call();
@@ -426,7 +426,7 @@ var graphina_localize = {"ajaxurl":"https:\/\/mammothtoken.xyz\/wp-admin\/admin-
                 upcomingRebasePercentageElement.textContent = 'Upcoming Rebase Percentage: ' + upcomingRebasePercentage  + '%';
 
                 const upcomingRebasePercentageElement2 = document.getElementById('upcomingRebasePercentage2');
-                upcomingRebasePercentageElement2.textContent = 'Upcoming Rebase Percentage: ' + upcomingRebasePercentage  + '%';
+                upcomingRebasePercentageElement2.textContent = 'Rebase: ' + upcomingRebasePercentage  + '%';
             } catch (error) {
                 console.error('Error fetching data:', error);
                 // If there's an error, display an error message or handle it appropriately
