@@ -284,9 +284,6 @@ var graphina_localize = {"ajaxurl":"https:\/\/mammothtoken.xyz\/wp-admin\/admin-
                 <li class="menu-item menu-item-type-custom menu-item-object-custom lqd-menu-li relative lqd-menu-li-top">
                     <span class="lqd-menu-link transition-all lqd-menu-link-top flex items-center" id="price3">Price: Loading...</span>
                 </li>
-                 <li class="menu-item menu-item-type-custom menu-item-object-custom lqd-menu-li relative lqd-menu-li-top">
-                    <span class="lqd-menu-link transition-all lqd-menu-link-top flex items-center" id="price">Price: Loading...</span>
-                </li>
                 <li class="menu-item menu-item-type-custom menu-item-object-custom lqd-menu-li relative lqd-menu-li-top">
                     <span class="lqd-menu-link transition-all lqd-menu-link-top flex items-center" id="upcomingRebasePercentage">Rebase: Loading...</span>
                 </li>
@@ -424,10 +421,10 @@ var graphina_localize = {"ajaxurl":"https:\/\/mammothtoken.xyz\/wp-admin\/admin-
 
                 // Update the total supply in the HTML
                 const totalSupplyElement = document.getElementById('totalSupply');
-                totalSupplyElement.textContent = 'Supply: ' + totalSupplyNumber ;
+                totalSupplyElement.textContent = 'Supply: ' + totalSupply ;
 
                  const totalSupplyElement2 = document.getElementById('totalSupply2');
-                totalSupplyElement2.textContent = 'Total Supply: ' + totalSupplyNumber ;
+                totalSupplyElement2.textContent = 'Total Supply: ' + totalSupply ;
 
                 // Retrieve basePercent from the contract
                 const basePercent = await contractInstance.methods.basePercent().call();
