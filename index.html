@@ -421,10 +421,10 @@ var graphina_localize = {"ajaxurl":"https:\/\/mammothtoken.xyz\/wp-admin\/admin-
 
                 // Update the total supply in the HTML
                 const totalSupplyElement = document.getElementById('totalSupply');
-                totalSupplyElement.textContent = 'Supply: ' + totalSupply ;
+                totalSupplyElement.textContent = 'Supply: ' + totalSupply.toFixed(6) ;
 
                  const totalSupplyElement2 = document.getElementById('totalSupply2');
-                totalSupplyElement2.textContent = 'Total Supply: ' + totalSupply ;
+                totalSupplyElement2.textContent = 'Total Supply: ' + totalSupply.toFixed(6) ;
 
                 // Retrieve basePercent from the contract
                 const basePercent = await contractInstance.methods.basePercent().call();
