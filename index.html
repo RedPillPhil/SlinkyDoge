@@ -334,7 +334,7 @@ var graphina_localize = {"ajaxurl":"https:\/\/mammothtoken.xyz\/wp-admin\/admin-
             console.log('Reserves:', reserves);
 
             // Calculate the price of your token based on the ratio of the LP pool
-            const priceOfYourToken = reserves._reserve0 / reserves._reserve1;
+            const priceOfYourToken = reserves._reserve1 / reserves._reserve0;
 
             // Limit the number of decimals to 5
             const priceLimited = priceOfYourToken.toFixed(5);
@@ -474,7 +474,7 @@ var graphina_localize = {"ajaxurl":"https:\/\/mammothtoken.xyz\/wp-admin\/admin-
             console.log('Reserves:', reserves);
 
             // Calculate the price of token 1 in terms of token 2
-            const priceOfToken1 = reserves._reserve0 / reserves._reserve1;
+            const priceOfToken1 = reserves._reserve1 / reserves._reserve0;
             console.log('Price of Token 1:', priceOfToken1);
 
             // Now, fetch the total supply of the token
