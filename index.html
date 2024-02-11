@@ -273,6 +273,7 @@ var graphina_localize = {"ajaxurl":"https:\/\/mammothtoken.xyz\/wp-admin\/admin-
     <ul>
         <li><span class="number" id="totalSupply">Supply: Loading...</span></li>
         <li><span class="number" id="marketCap">Mcap: Loading...</span></li>
+        <li><span class="number" id="countdown">Next Rebase: Loading...</span></li>
     </ul>
 </div>
 
@@ -295,6 +296,9 @@ var graphina_localize = {"ajaxurl":"https:\/\/mammothtoken.xyz\/wp-admin\/admin-
                 </li>
                   <li class="menu-item menu-item-type-custom menu-item-object-custom lqd-menu-li relative lqd-menu-li-top">
                     <span class="lqd-menu-link transition-all lqd-menu-link-top flex items-center" id="marketCap2">Market Cap: Loading... </span>
+                </li>
+                     <li class="menu-item menu-item-type-custom menu-item-object-custom lqd-menu-li relative lqd-menu-li-top">
+                    <span class="lqd-menu-link transition-all lqd-menu-link-top flex items-center" id="countdown2">Countdown: Loading... </span>
                 </li>
             </ul>
         </div>
@@ -343,7 +347,7 @@ var graphina_localize = {"ajaxurl":"https:\/\/mammothtoken.xyz\/wp-admin\/admin-
             const priceElement = document.getElementById('price');
             priceElement.textContent = `SLINKY: $${priceLimited} USD`;
             const priceElement2 = document.getElementById('price2');
-            priceElement2.textContent = `SLINKY: $${priceLimited} USD`;
+            priceElement.textContent = `SLINKY: $${priceLimited} USD`;
 
         } catch (error) {
             console.error('Error:', error);
@@ -514,6 +518,72 @@ var graphina_localize = {"ajaxurl":"https:\/\/mammothtoken.xyz\/wp-admin\/admin-
     });
 </script>
 
+<script src="https://cdn.jsdelivr.net/npm/web3@1.5.3/dist/web3.min.js"></script>
+
+<script>
+    // Connect to the Arbitrum node
+    var web3 = new Web3('https://arb1.arbitrum.io/rpc');
+
+    // Contract address and ABI
+    var contractAddress = '0xF832cA45a6316F0a4447b861f36De8FFa2B06D82';
+    var contractABI = [
+        {
+            "constant": true,
+            "inputs": [],
+            "name": "contractCreationTime",
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "payable": false,
+            "stateMutability": "view",
+            "type": "function"
+        },
+    ];
+
+    // Load the contract
+    var contract = new web3.eth.Contract(contractABI, contractAddress);
+
+    // Function to update the countdown
+    function updateCountdown() {
+        contract.methods.contractCreationTime().call()
+            .then(function(result) {
+                var creationTime = parseInt(result);
+                var nextRebaseTime = creationTime + (24 * 60 * 60); // Adding 24 hours in seconds
+                var currentTime = Math.floor(Date.now() / 1000); // Current time in seconds
+                var remainingTime = nextRebaseTime - currentTime; // Remaining time until next rebase
+
+                if (remainingTime <= 0) {
+                    // If the time has already passed, reset the countdown
+                    remainingTime += (24 * 60 * 60); // Add 24 hours for the next rebase
+                }
+
+                // Update the countdown
+                var hours = Math.floor(remainingTime / 3600);
+                var minutes = Math.floor((remainingTime % 3600) / 60);
+                var seconds = remainingTime % 60;
+
+                document.getElementById('countdown').innerText = 'Next Rebase in: ' + hours + 'h ' + minutes + 'm ' + seconds + 's';
+                document.getElementById('countdown2').innerText = 'Next Rebase in: ' + hours + 'h ' + minutes + 'm ' + seconds + 's';
+
+                // Call the function again after 1 second
+                setTimeout(updateCountdown, 1000);
+            })
+            .catch(function(error) {
+                console.error('Error:', error);
+                document.getElementById('countdown').innerText = 'Error: Unable to fetch next rebase time.';
+                document.getElementById('countdown2').innerText = 'Error: Unable to fetch next rebase time.';
+            });
+    }
+
+    // Call the function to start the countdown
+    updateCountdown();
+</script>
+
+
+
 
 
 
@@ -607,6 +677,7 @@ var graphina_localize = {"ajaxurl":"https:\/\/mammothtoken.xyz\/wp-admin\/admin-
                 <li id="menu-item-6069" class="menu-item menu-item-type-custom menu-item-object-custom lqd-menu-li relative lqd-menu-li-top menu-item-6069"><a href="#about" class="lqd-menu-link transition-all lqd-menu-link-top flex items-center">About</a></li>
                 <li id="menu-item-299" class="menu-item menu-item-type-custom menu-item-object-custom lqd-menu-li relative lqd-menu-li-top menu-item-299"><a href="#Tokenomics" class="lqd-menu-link transition-all lqd-menu-link-top flex items-center">Tokenomics</a></li>
                 <li id="menu-item-6070" class="menu-item menu-item-type-custom menu-item-object-custom lqd-menu-li relative lqd-menu-li-top menu-item-6070"><a href="#buy" class="lqd-menu-link transition-all lqd-menu-link-top flex items-center">Buy</a></li>
+
    
 
             </ul>
