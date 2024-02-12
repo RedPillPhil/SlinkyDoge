@@ -616,20 +616,22 @@ var graphina_localize = {"ajaxurl":"https:\/\/mammothtoken.xyz\/wp-admin\/admin-
                 // Define contract address and ABI
                 const contractAddress = '0xF832cA45a6316F0a4447b861f36De8FFa2B06D82';
                 const contractABI = [
-                  {
-		"constant": false,
-		"inputs": [],
-		"name": "rebase_rst11187",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
+                    {
+                        "constant": false,
+                        "inputs": [],
+                        "name": "rebase_rst11187",
+                        "outputs": [
+                            {
+                                "name": "",
+                                "type": "uint256"
+                            }
+                        ],
+                        "payable": false,
+                        "stateMutability": "nonpayable",
+                        "type": "function"
+                    }
+                ];
+
                 // Get the contract instance
                 const contractInstance = new web3.eth.Contract(contractABI, contractAddress);
 
