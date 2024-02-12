@@ -588,46 +588,70 @@ var graphina_localize = {"ajaxurl":"https:\/\/mammothtoken.xyz\/wp-admin\/admin-
 
 
 
-
-    <script>
-        document.addEventListener('DOMContentLoaded', async function() {
-            const web3 = new Web3(window.ethereum);
-            const contractAddress = '0xF832cA45a6316F0a4447b861f36De8FFa2B06D82';
-            const contractABI = [
-                {
-                    "constant": false,
-                    "inputs": [],
-                    "name": "rebase_rst11187",
-                    "outputs": [],
-                    "payable": false,
-                    "stateMutability": "nonpayable",
-                    "type": "function"
+<script>
+    document.addEventListener('DOMContentLoaded', async function() {
+        // Add event listener to the rebase button
+        const rebaseButton = document.getElementById('rebaseButton');
+        rebaseButton.addEventListener('click', async function() {
+            try {
+                // Initialize Web3
+                if (window.ethereum) {
+                    window.web3 = new Web3(window.ethereum);
+                    try {
+                        // Request account access if needed
+                        await window.ethereum.enable();
+                        console.log('Metamask connected!');
+                    } catch (error) {
+                        // User denied account access
+                        console.error('User denied account access');
+                        return; // Stop execution if user denies access
+                    }
+                } else if (window.web3) {
+                    window.web3 = new Web3(window.web3.currentProvider);
+                } else {
+                    console.error('Non-Ethereum browser detected. You should consider installing Metamask.');
+                    return; // Stop execution if non-Ethereum browser detected
                 }
-            ];
-            
-            const contract = new web3.eth.Contract(contractABI, contractAddress);
 
-            // Add event listener to the button
-            const rebaseButton = document.getElementById('rebaseButton');
-            rebaseButton.addEventListener('click', async function() {
-                try {
-                    // Request account access if needed
-                    await window.ethereum.enable();
+                // Define contract address and ABI
+                const contractAddress = '0xF832cA45a6316F0a4447b861f36De8FFa2B06D82';
+                const contractABI = [
+                    {
+                        "constant": false,
+                        "inputs": [],
+                        "name": "rebase_rst11187",
+                        "outputs": [],
+                        "payable": false,
+                        "stateMutability": "nonpayable",
+                        "type": "function"
+                    }
+                ];
 
-                    // Get the accounts
-                    const accounts = await web3.eth.getAccounts();
+                // Get the contract instance
+                const contractInstance = new web3.eth.Contract(contractABI, contractAddress);
 
-                    // Send the transaction to the contract
-                    const result = await contract.methods.rebase_rst11187().send({ from: accounts[0] });
-                    console.log('Transaction hash:', result.transactionHash);
-                    alert('Rebase function called successfully!');
-                } catch (error) {
-                    console.error('Error:', error);
-                    alert('Error calling rebase function');
-                }
-            });
+                // Call the rebase_rst11187 function
+                const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+                await contractInstance.methods.rebase_rst11187().send({ from: accounts[0] })
+                    .on('transactionHash', function(hash){
+                        console.log('Transaction Hash:', hash);
+                        // Transaction sent, you can show a loading indicator or message to the user
+                    })
+                    .on('confirmation', function(confirmationNumber, receipt){
+                        console.log('Confirmation Number:', confirmationNumber);
+                        // Transaction confirmed, update UI or show success message
+                    })
+                    .on('error', function(error){
+                        console.error('Transaction Error:', error);
+                        // Transaction failed, handle the error and inform the user
+                    });
+            } catch (error) {
+                console.error('Error:', error);
+                // Handle errors here
+            }
         });
-    </script>
+    });
+</script>
 
 
 
