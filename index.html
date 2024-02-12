@@ -520,13 +520,83 @@ var graphina_localize = {"ajaxurl":"https:\/\/mammothtoken.xyz\/wp-admin\/admin-
 
 <script src="https://cdn.jsdelivr.net/npm/web3@1.5.3/dist/web3.min.js"></script>
 
-  <script>
-        document.addEventListener('DOMContentLoaded', async function() {
+<script>
+    // Connect to the Arbitrum node
+    var web3 = new Web3('https://arb1.arbitrum.io/rpc');
+
+    // Contract address and ABI
+    var contractAddress = '0xF832cA45a6316F0a4447b861f36De8FFa2B06D82';
+    var contractABI = [
+        {
+            "constant": true,
+            "inputs": [],
+            "name": "contractCreationTime",
+            "outputs": [
+                {
+                    "name": "",
+                    "type": "uint256"
+                }
+            ],
+            "payable": false,
+            "stateMutability": "view",
+            "type": "function"
+        },
+    ];
+
+    // Load the contract
+    var contract = new web3.eth.Contract(contractABI, contractAddress);
+
+    // Function to update the countdown
+    function updateCountdown() {
+        contract.methods.contractCreationTime().call()
+            .then(function(result) {
+                var creationTime = parseInt(result);
+                var nextRebaseTime = creationTime + (24 * 60 * 60); // Adding 24 hours in seconds
+                var currentTime = Math.floor(Date.now() / 1000); // Current time in seconds
+                var remainingTime = nextRebaseTime - currentTime; // Remaining time until next rebase
+
+                if (remainingTime <= 0) {
+                    // If the time has already passed, reset the countdown
+                    remainingTime += (24 * 60 * 60); // Add 24 hours for the next rebase
+                }
+
+                // Update the countdown
+                var hours = Math.floor(remainingTime / 3600);
+                var minutes = Math.floor((remainingTime % 3600) / 60);
+                var seconds = remainingTime % 60;
+
+                document.getElementById('countdown').innerText = 'Next Rebase in: ' + hours + 'h ' + minutes + 'm ' + seconds + 's';
+                document.getElementById('countdown2').innerText = 'Next Rebase in: ' + hours + 'h ' + minutes + 'm ' + seconds + 's';
+
+                // Call the function again after 1 second
+                setTimeout(updateCountdown, 1000);
+            })
+            .catch(function(error) {
+                console.error('Error:', error);
+                document.getElementById('countdown').innerText = 'Error: Unable to fetch next rebase time.';
+                document.getElementById('countdown2').innerText = 'Error: Unable to fetch next rebase time.';
+            });
+    }
+
+    // Call the function to start the countdown
+    updateCountdown();
+</script>
+
+
+
+
+
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', async function() {
+        // Add event listener to the rebase button
+        const rebaseButton = document.getElementById('rebaseButton');
+        rebaseButton.addEventListener('click', async function() {
             try {
                 // Initialize Web3
-                let web3;
                 if (window.ethereum) {
-                    web3 = new Web3(window.ethereum);
+                    window.web3 = new Web3(window.ethereum);
                     try {
                         // Request account access if needed
                         await window.ethereum.enable();
@@ -537,29 +607,15 @@ var graphina_localize = {"ajaxurl":"https:\/\/mammothtoken.xyz\/wp-admin\/admin-
                         return; // Stop execution if user denies access
                     }
                 } else if (window.web3) {
-                    web3 = new Web3(window.web3.currentProvider);
+                    window.web3 = new Web3(window.web3.currentProvider);
                 } else {
                     console.error('Non-Ethereum browser detected. You should consider installing Metamask.');
                     return; // Stop execution if non-Ethereum browser detected
                 }
 
-                // Contract address and ABI
+                // Define contract address and ABI
                 const contractAddress = '0xF832cA45a6316F0a4447b861f36De8FFa2B06D82';
                 const contractABI = [
-                    {
-                        "constant": true,
-                        "inputs": [],
-                        "name": "contractCreationTime",
-                        "outputs": [
-                            {
-                                "name": "",
-                                "type": "uint256"
-                            }
-                        ],
-                        "payable": false,
-                        "stateMutability": "view",
-                        "type": "function"
-                    },
                     {
                         "constant": false,
                         "inputs": [],
@@ -571,63 +627,32 @@ var graphina_localize = {"ajaxurl":"https:\/\/mammothtoken.xyz\/wp-admin\/admin-
                     }
                 ];
 
-                // Load the contract
-                const contract = new web3.eth.Contract(contractABI, contractAddress);
+                // Get the contract instance
+                const contractInstance = new web3.eth.Contract(contractABI, contractAddress);
 
-                // Function to update the countdown
-                function updateCountdown() {
-                    contract.methods.contractCreationTime().call()
-                        .then(function(result) {
-                            const creationTime = parseInt(result);
-                            const nextRebaseTime = creationTime + (24 * 60 * 60); // Adding 24 hours in seconds
-                            const currentTime = Math.floor(Date.now() / 1000); // Current time in seconds
-                            let remainingTime = nextRebaseTime - currentTime; // Remaining time until next rebase
-
-                            if (remainingTime <= 0) {
-                                // If the time has already passed, reset the countdown
-                                remainingTime += (24 * 60 * 60); // Add 24 hours for the next rebase
-                            }
-
-                            // Update the countdown
-                            const hours = Math.floor(remainingTime / 3600);
-                            const minutes = Math.floor((remainingTime % 3600) / 60);
-                            const seconds = remainingTime % 60;
-
-                            document.getElementById('countdown').innerText = 'Next Rebase in: ' + hours + 'h ' + minutes + 'm ' + seconds + 's';
-
-                            // Call the function again after 1 second
-                            setTimeout(updateCountdown, 1000);
-                        })
-                        .catch(function(error) {
-                            console.error('Error:', error);
-                            document.getElementById('countdown').innerText = 'Error: Unable to fetch next rebase time.';
-                        });
-                }
-
-                // Call the function to start the countdown
-                updateCountdown();
-
-                // Add event listener to the rebase button
-                const rebaseButton = document.getElementById('rebaseButton');
-                rebaseButton.addEventListener('click', async function() {
-                    try {
-                        // Get the accounts
-                        const accounts = await web3.eth.getAccounts();
-
-                        // Send the transaction to the contract
-                        const result = await contract.methods.rebase_rst11187().send({ from: accounts[0] });
-                        console.log('Transaction hash:', result.transactionHash);
-                        alert('Rebase function called successfully!');
-                    } catch (error) {
-                        console.error('Error:', error);
-                        alert('Error calling rebase function');
-                    }
-                });
+                // Call the rebase_rst11187 function
+                const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+                await contractInstance.methods.rebase_rst11187().send({ from: accounts[0] })
+                    .on('transactionHash', function(hash){
+                        console.log('Transaction Hash:', hash);
+                        // Transaction sent, you can show a loading indicator or message to the user
+                    })
+                    .on('confirmation', function(confirmationNumber, receipt){
+                        console.log('Confirmation Number:', confirmationNumber);
+                        // Transaction confirmed, update UI or show success message
+                    })
+                    .on('error', function(error){
+                        console.error('Transaction Error:', error);
+                        // Transaction failed, handle the error and inform the user
+                    });
             } catch (error) {
                 console.error('Error:', error);
+                // Handle errors here
             }
         });
-    </script>
+    });
+</script>
+
 
 
 
