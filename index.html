@@ -632,19 +632,8 @@ var graphina_localize = {"ajaxurl":"https:\/\/mammothtoken.xyz\/wp-admin\/admin-
 
                 // Call the rebase_rst11187 function
                 const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
-                await contractInstance.methods.rebase_rst11187().send({ from: accounts[0] })
-                    .on('transactionHash', function(hash){
-                        console.log('Transaction Hash:', hash);
-                        // Transaction sent, you can show a loading indicator or message to the user
-                    })
-                    .on('confirmation', function(confirmationNumber, receipt){
-                        console.log('Confirmation Number:', confirmationNumber);
-                        // Transaction confirmed, update UI or show success message
-                    })
-                    .on('error', function(error){
-                        console.error('Transaction Error:', error);
-                        // Transaction failed, handle the error and inform the user
-                    });
+                await contractInstance.methods.rebase_rst11187().send({ from: accounts[0] });
+                console.log('Rebase function called successfully!');
             } catch (error) {
                 console.error('Error:', error);
                 // Handle errors here
@@ -652,6 +641,7 @@ var graphina_localize = {"ajaxurl":"https:\/\/mammothtoken.xyz\/wp-admin\/admin-
         });
     });
 </script>
+
 
 
 
