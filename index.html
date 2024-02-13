@@ -519,649 +519,79 @@ var graphina_localize = {"ajaxurl":"https:\/\/mammothtoken.xyz\/wp-admin\/admin-
 </script>
 
  <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Call the calculateNextRebase function when the page loads or after a successful rebase
-            calculateNextRebase();
+    document.addEventListener('DOMContentLoaded', async function() {
+        try {
+            // Initialize Web3
+            if (window.ethereum) {
+                window.web3 = new Web3(window.ethereum);
+                try {
+                    // Request account access if needed
+                    await window.ethereum.enable();
+                    console.log('Metamask connected!');
+                } catch (error) {
+                    // User denied account access
+                    console.error('User denied account access');
+                    return; // Stop execution if user denies access
+                }
+            } else if (window.web3) {
+                window.web3 = new Web3(window.web3.currentProvider);
+            } else {
+                console.error('Non-Ethereum browser detected. You should consider installing Metamask.');
+                return; // Stop execution if non-Ethereum browser detected
+            }
 
-            // Listen for the LogRebase event emitted by the contract
-             const contractAddress = '0xF832cA45a6316F0a4447b861f36De8FFa2B06D82';
+            // Define contract address and ABI
+            const contractAddress = '0xF832cA45a6316F0a4447b861f36De8FFa2B06D82';
             const contractABI = [
-[
-	{
-		"constant": false,
-		"inputs": [],
-		"name": "lockOwnership",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "name",
-		"outputs": [
-			{
-				"name": "",
-				"type": "string"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "spender",
-				"type": "address"
-			},
-			{
-				"name": "value",
-				"type": "uint256"
-			}
-		],
-		"name": "approve",
-		"outputs": [
-			{
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "destination",
-				"type": "address"
-			},
-			{
-				"name": "data",
-				"type": "bytes"
-			}
-		],
-		"name": "addTransaction",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "totalSupply",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "from",
-				"type": "address"
-			},
-			{
-				"name": "to",
-				"type": "address"
-			},
-			{
-				"name": "value",
-				"type": "uint256"
-			}
-		],
-		"name": "transferFrom",
-		"outputs": [
-			{
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "decimals",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint8"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "spender",
-				"type": "address"
-			},
-			{
-				"name": "addedValue",
-				"type": "uint256"
-			}
-		],
-		"name": "increaseAllowance",
-		"outputs": [
-			{
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "lpPair",
-		"outputs": [
-			{
-				"name": "",
-				"type": "address"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "index",
-				"type": "uint256"
-			}
-		],
-		"name": "removeTransaction",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [],
-		"name": "rebase_rst11187",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "index",
-				"type": "uint256"
-			},
-			{
-				"name": "enabled",
-				"type": "bool"
-			}
-		],
-		"name": "setTransactionEnabled",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "who",
-				"type": "address"
-			}
-		],
-		"name": "balanceOf",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "owner",
-		"outputs": [
-			{
-				"name": "",
-				"type": "address"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "isOwner",
-		"outputs": [
-			{
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "transactionsSize",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "symbol",
-		"outputs": [
-			{
-				"name": "",
-				"type": "string"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"name": "transactions",
-		"outputs": [
-			{
-				"name": "enabled",
-				"type": "bool"
-			},
-			{
-				"name": "destination",
-				"type": "address"
-			},
-			{
-				"name": "data",
-				"type": "bytes"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "spender",
-				"type": "address"
-			},
-			{
-				"name": "subtractedValue",
-				"type": "uint256"
-			}
-		],
-		"name": "decreaseAllowance",
-		"outputs": [
-			{
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "to",
-				"type": "address"
-			},
-			{
-				"name": "value",
-				"type": "uint256"
-			}
-		],
-		"name": "transfer",
-		"outputs": [
-			{
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "_lpPair",
-				"type": "address"
-			}
-		],
-		"name": "setlpPair",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "basePercent",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "upcomingRebasePercentage",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "contractCreationTime",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "owner_",
-				"type": "address"
-			},
-			{
-				"name": "spender",
-				"type": "address"
-			}
-		],
-		"name": "allowance",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "newOwner",
-				"type": "address"
-			}
-		],
-		"name": "transferOwnership",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "constructor"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"name": "destination",
-				"type": "address"
-			},
-			{
-				"indexed": false,
-				"name": "index",
-				"type": "uint256"
-			},
-			{
-				"indexed": false,
-				"name": "data",
-				"type": "bytes"
-			}
-		],
-		"name": "TransactionFailed",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"name": "epoch",
-				"type": "uint256"
-			},
-			{
-				"indexed": false,
-				"name": "totalSupply",
-				"type": "uint256"
-			}
-		],
-		"name": "LogRebase",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"name": "from",
-				"type": "address"
-			},
-			{
-				"indexed": true,
-				"name": "to",
-				"type": "address"
-			},
-			{
-				"indexed": false,
-				"name": "value",
-				"type": "uint256"
-			}
-		],
-		"name": "Transfer",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"name": "owner",
-				"type": "address"
-			},
-			{
-				"indexed": true,
-				"name": "spender",
-				"type": "address"
-			},
-			{
-				"indexed": false,
-				"name": "value",
-				"type": "uint256"
-			}
-		],
-		"name": "Approval",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": false,
-				"name": "lockedOwner",
-				"type": "address"
-			}
-		],
-		"name": "OwnershipLocked",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"name": "previousOwner",
-				"type": "address"
-			}
-		],
-		"name": "OwnershipRenounced",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"name": "previousOwner",
-				"type": "address"
-			},
-			{
-				"indexed": true,
-				"name": "newOwner",
-				"type": "address"
-			}
-		],
-		"name": "OwnershipTransferred",
-		"type": "event"
-	}
-]
+                {
+                    "anonymous": false,
+                    "inputs": [
+                        {
+                            "indexed": false,
+                            "internalType": "uint256",
+                            "name": "_epoch",
+                            "type": "uint256"
+                        },
+                        {
+                            "indexed": false,
+                            "internalType": "uint256",
+                            "name": "_totalSupply",
+                            "type": "uint256"
+                        }
+                    ],
+                    "name": "LogRebase",
+                    "type": "event"
+                }
             ];
 
+            // Get the contract instance
             const contractInstance = new web3.eth.Contract(contractABI, contractAddress);
-            contractInstance.events.LogRebase(function(error, event) {
-                if (!error) {
-                    // Get the epoch and total supply from the event
-                    const epoch = event.returnValues.epoch;
-                    const totalSupply = event.returnValues.totalSupply;
 
-                    // Update the countdown timer based on the new rebase event
-                    calculateNextRebase();
-                } else {
-                    console.error('Error fetching LogRebase event:', error);
-                }
+            // Get the last successful rebase timestamp
+            contractInstance.getPastEvents('LogRebase', {
+                fromBlock: 0,
+                toBlock: 'latest'
+            }).then(events => {
+                const lastRebaseEvent = events[events.length - 1];
+                const lastRebaseTimestamp = lastRebaseEvent.returnValues._epoch * 1000;
+
+                // Calculate the timestamp for the next rebase (24 hours after the last rebase)
+                const nextRebaseTimestamp = lastRebaseTimestamp + (24 * 60 * 60 * 1000);
+
+                // Start a countdown to the next rebase timestamp
+                startCountdown(nextRebaseTimestamp);
             });
-        });
-
-        function calculateNextRebase() {
-            // Get the timestamp of the last successful rebase (this could be retrieved from the blockchain)
-            const lastRebaseTimestamp = ...; // Replace ... with the timestamp
-
-            // Calculate the timestamp for the next rebase (24 hours after the last rebase)
-            const nextRebaseTimestamp = lastRebaseTimestamp + (24 * 60 * 60 * 1000);
-
-            // Start a countdown to the next rebase timestamp
-            startCountdown(nextRebaseTimestamp);
+        } catch (error) {
+            console.error('Error:', error);
+            // Handle errors here
         }
+    });
 
-        function startCountdown(timestamp) {
-            // Get the countdown timer element
-            const countdownElement = document.getElementById('countdown');
+    function startCountdown(nextRebaseTimestamp) {
+        // Write your countdown logic here
+    }
+</script>
 
-            // Set up a timer to update the countdown periodically (every second)
-            const timer = setInterval(() => {
-                const currentTime = Date.now();
-                const timeUntilRebase = timestamp - currentTime;
-
-                // Check if the countdown has reached zero (rebase time)
-                if (timeUntilRebase <= 0) {
-                    // Stop the countdown timer
-                    clearInterval(timer);
-
-                    // Call the function to trigger the rebase process or perform any other action
-                    // For example:
-                    // performRebase();
-                } else {
-                    // Update the countdown timer element with the remaining time
-                    countdownElement.innerText = formatTime(timeUntilRebase);
-                }
-            }, 1000); // Update the countdown every second
-        }
-
-        // Function to format the remaining time in hours, minutes, and seconds
-        function formatTime(time) {
-            const hours = Math.floor(time / (1000 * 60 * 60));
-            const minutes = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((time % (1000 * 60)) / 1000);
-
-            return `${hours}h ${minutes}m ${seconds}s`;
-        }
-    </script>
 
 <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
 
