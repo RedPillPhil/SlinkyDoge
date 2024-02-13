@@ -565,18 +565,22 @@ var graphina_localize = {"ajaxurl":"https:\/\/mammothtoken.xyz\/wp-admin\/admin-
             // Get the contract instance
             const contractInstance = new web3.eth.Contract(contractABI, contractAddress);
 
-            // Get the last successful rebase events
+            // Get the latest successful rebase event
             contractInstance.getPastEvents('LogRebase', {
                 fromBlock: 0,
                 toBlock: 'latest'
             }).then(async events => {
-                for (let i = 0; i < events.length; i++) {
-                    const event = events[i];
-                    const blockNumber = event.blockNumber;
-                    const block = await web3.eth.getBlock(blockNumber);
-                    const timestamp = block.timestamp;
-                    console.log('LogRebase event timestamp:', new Date(timestamp * 1000));
-                }
+                const latestEvent = events[events.length - 1];
+                const blockNumber = latestEvent.blockNumber;
+                const block = await web3.eth.getBlock(blockNumber);
+                const timestamp = block.timestamp;
+
+                // Calculate the timestamp for the next rebase (24 hours after the last rebase)
+                const nextRebaseTimestamp = timestamp + (24 * 60 * 60);
+                console.log('Next Rebase Timestamp:', new Date(nextRebaseTimestamp * 1000));
+
+                // Start a countdown to the next rebase timestamp
+                startCountdown(nextRebaseTimestamp);
             }).catch(error => {
                 console.error('Error fetching LogRebase events:', error);
             });
@@ -585,6 +589,10 @@ var graphina_localize = {"ajaxurl":"https:\/\/mammothtoken.xyz\/wp-admin\/admin-
             // Handle errors here
         }
     });
+
+    function startCountdown(nextRebaseTimestamp) {
+        // Write your countdown logic here
+    }
 </script>
 
 
