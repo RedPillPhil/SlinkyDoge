@@ -521,6 +521,28 @@ var graphina_localize = {"ajaxurl":"https:\/\/mammothtoken.xyz\/wp-admin\/admin-
 <script>
     document.addEventListener('DOMContentLoaded', async function() {
         try {
+            // Define contract address and ABI
+            const contractAddress = '0xF832cA45a6316F0a4447b861f36De8FFa2B06D82';
+            const contractABI = [
+                {
+                    "anonymous": false,
+                    "inputs": [
+                        {
+                            "indexed": true,
+                            "name": "epoch",
+                            "type": "uint256"
+                        },
+                        {
+                            "indexed": false,
+                            "name": "totalSupply",
+                            "type": "uint256"
+                        }
+                    ],
+                    "name": "LogRebase",
+                    "type": "event"
+                }
+            ];
+
             // Initialize Web3
             if (window.ethereum) {
                 window.web3 = new Web3(window.ethereum);
@@ -540,50 +562,17 @@ var graphina_localize = {"ajaxurl":"https:\/\/mammothtoken.xyz\/wp-admin\/admin-
                 return; // Stop execution if non-Ethereum browser detected
             }
 
-            // Define contract address and ABI
-            const contractAddress = '0xF832cA45a6316F0a4447b861f36De8FFa2B06D82';
-            const contractABI = [
-                {
-                    "anonymous": false,
-                    "inputs": [
-                        {
-                            "indexed": false,
-                            "internalType": "uint256",
-                            "name": "_epoch",
-                            "type": "uint256"
-                        },
-                        {
-                            "indexed": false,
-                            "internalType": "uint256",
-                            "name": "_totalSupply",
-                            "type": "uint256"
-                        }
-                    ],
-                    "name": "LogRebase",
-                    "type": "event"
-                }
-            ];
-
             // Get the contract instance
             const contractInstance = new web3.eth.Contract(contractABI, contractAddress);
 
-            // Get the last successful rebase timestamp
+            // Get the last successful rebase events
             contractInstance.getPastEvents('LogRebase', {
                 fromBlock: 0,
                 toBlock: 'latest'
             }).then(events => {
-                const lastRebaseEvent = events[events.length - 1];
-                const lastRebaseTimestamp = lastRebaseEvent.returnValues._epoch * 1000;
-                console.log('Last Rebase Timestamp:', lastRebaseTimestamp);
-
-                // Calculate the timestamp for the next rebase (24 hours after the last rebase)
-                const nextRebaseTimestamp = lastRebaseTimestamp + (24 * 60 * 60 * 1000);
-                console.log('Next Rebase Timestamp:', nextRebaseTimestamp);
-
-                // Start a countdown to the next rebase timestamp
-                startCountdown(nextRebaseTimestamp);
+                console.log('LogRebase events:', events);
             }).catch(error => {
-                console.error('Error fetching past events:', error);
+                console.error('Error fetching LogRebase events:', error);
             });
         } catch (error) {
             console.error('Error:', error);
@@ -591,7 +580,6 @@ var graphina_localize = {"ajaxurl":"https:\/\/mammothtoken.xyz\/wp-admin\/admin-
         }
     });
 </script>
-
 
 
 <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
