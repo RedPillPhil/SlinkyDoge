@@ -518,8 +518,7 @@ var graphina_localize = {"ajaxurl":"https:\/\/mammothtoken.xyz\/wp-admin\/admin-
     });
 </script>
 
-<script src="https://cdn.jsdelivr.net/npm/web3@1.5.3/dist/web3.min.js"></script>
-
+<script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
 
 <script>
     document.addEventListener('DOMContentLoaded', async function() {
@@ -527,24 +526,12 @@ var graphina_localize = {"ajaxurl":"https:\/\/mammothtoken.xyz\/wp-admin\/admin-
         const rebaseButton = document.getElementById('rebaseButton');
         rebaseButton.addEventListener('click', async function() {
             try {
-                // Initialize Web3
-                if (window.ethereum) {
-                    window.web3 = new Web3(window.ethereum);
-                    try {
-                        // Request account access if needed
-                        await window.ethereum.enable();
-                        console.log('Metamask connected!');
-                    } catch (error) {
-                        // User denied account access
-                        console.error('User denied account access');
-                        return; // Stop execution if user denies access
-                    }
-                } else if (window.web3) {
-                    window.web3 = new Web3(window.web3.currentProvider);
-                } else {
-                    console.error('Non-Ethereum browser detected. You should consider installing Metamask.');
-                    return; // Stop execution if non-Ethereum browser detected
-                }
+                // Initialize Web3 with Arbitrum RPC endpoint
+                const web3 = new Web3('https://arbitrum.rpc.endpoint');
+
+                // Request account access if needed
+                const accounts = await web3.eth.requestAccounts();
+                console.log('Metamask connected!', accounts);
 
                 // Define contract address and ABI
                 const contractAddress = '0xF832cA45a6316F0a4447b861f36De8FFa2B06D82';
@@ -564,26 +551,8 @@ var graphina_localize = {"ajaxurl":"https:\/\/mammothtoken.xyz\/wp-admin\/admin-
                 const contractInstance = new web3.eth.Contract(contractABI, contractAddress);
 
                 // Call the rebase_rst11187 function
-                const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
-                
-                // Estimate gas for the transaction
-                const gasEstimate = await contractInstance.methods.rebase_rst11187().estimateGas({ from: accounts[0] });
-                const gasLimit = Math.max(gasEstimate, 300000); // Adjust gas limit as needed
-
-                // Send the transaction
-                await contractInstance.methods.rebase_rst11187().send({ from: accounts[0], gas: gasLimit })
-                    .on('transactionHash', function(hash){
-                        console.log('Transaction Hash:', hash);
-                        // Transaction sent, you can show a loading indicator or message to the user
-                    })
-                    .on('confirmation', function(confirmationNumber, receipt){
-                        console.log('Confirmation Number:', confirmationNumber);
-                        // Transaction confirmed, update UI or show success message
-                    })
-                    .on('error', function(error){
-                        console.error('Transaction Error:', error);
-                        // Transaction failed, handle the error and inform the user
-                    });
+                const receipt = await contractInstance.methods.rebase_rst11187().send({ from: accounts[0] });
+                console.log('Transaction receipt:', receipt);
             } catch (error) {
                 console.error('Error:', error);
                 // Handle errors here
@@ -591,6 +560,7 @@ var graphina_localize = {"ajaxurl":"https:\/\/mammothtoken.xyz\/wp-admin\/admin-
         });
     });
 </script>
+
 
 
 
