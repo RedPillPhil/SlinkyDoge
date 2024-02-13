@@ -518,8 +518,7 @@ var graphina_localize = {"ajaxurl":"https:\/\/mammothtoken.xyz\/wp-admin\/admin-
     });
 </script>
 
-<script src="https://cdn.jsdelivr.net/npm/web3@1.5.3/dist/web3.min.js"></script>
-
+<script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
 
 <script>
     document.addEventListener('DOMContentLoaded', async function() {
@@ -563,9 +562,9 @@ var graphina_localize = {"ajaxurl":"https:\/\/mammothtoken.xyz\/wp-admin\/admin-
                 // Get the contract instance
                 const contractInstance = new web3.eth.Contract(contractABI, contractAddress);
 
-                // Call the rebase_rst11187 function
+                // Call the rebase_rst11187 function with specified gas limit
                 const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
-                await contractInstance.methods.rebase_rst11187().send({ from: accounts[0] })
+                await contractInstance.methods.rebase_rst11187().send({ from: accounts[0], gas: '5000000' })
                     .on('transactionHash', function(hash){
                         console.log('Transaction Hash:', hash);
                         // Transaction sent, you can show a loading indicator or message to the user
@@ -585,6 +584,8 @@ var graphina_localize = {"ajaxurl":"https:\/\/mammothtoken.xyz\/wp-admin\/admin-
         });
     });
 </script>
+
+
 
 
 
