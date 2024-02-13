@@ -578,6 +578,7 @@ var graphina_localize = {"ajaxurl":"https:\/\/mammothtoken.xyz\/wp-admin\/admin-
 
                 // Calculate the timestamp for the next rebase (24 hours after the last rebase)
                 const nextRebaseTimestamp = lastRebaseTimestamp + (24 * 60 * 60 * 1000);
+                console.log('Next Rebase Timestamp:', nextRebaseTimestamp);
 
                 // Start a countdown to the next rebase timestamp
                 startCountdown(nextRebaseTimestamp);
