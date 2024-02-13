@@ -592,35 +592,6 @@ var graphina_localize = {"ajaxurl":"https:\/\/mammothtoken.xyz\/wp-admin\/admin-
     });
 </script>
 
-    function startCountdown(nextRebaseTimestamp) {
-        // Get the countdown element by its ID
-        const countdownElement = document.getElementById('countdown');
-
-        // Update the countdown every second
-        const countdownInterval = setInterval(function() {
-            // Get the current timestamp
-            const currentTime = Math.floor(Date.now() / 1000);
-
-            // Calculate the remaining time until the next rebase
-            const remainingTime = nextRebaseTimestamp - currentTime;
-
-            // Check if the remaining time is greater than 0
-            if (remainingTime > 0) {
-                // Convert remaining time to hours, minutes, and seconds
-                const hours = Math.floor(remainingTime / 3600);
-                const minutes = Math.floor((remainingTime % 3600) / 60);
-                const seconds = remainingTime % 60;
-
-                // Update the countdown element with the remaining time
-                countdownElement.textContent = `Next rebase in: ${hours}h ${minutes}m ${seconds}s`;
-            } else {
-                // If the remaining time is 0 or negative, clear the interval and display a message
-                clearInterval(countdownInterval);
-                countdownElement.textContent = 'Next rebase is now!';
-            }
-        }, 1000);
-    }
-</script>
 
 
 <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
