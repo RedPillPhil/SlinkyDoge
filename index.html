@@ -569,8 +569,14 @@ var graphina_localize = {"ajaxurl":"https:\/\/mammothtoken.xyz\/wp-admin\/admin-
             contractInstance.getPastEvents('LogRebase', {
                 fromBlock: 0,
                 toBlock: 'latest'
-            }).then(events => {
-                console.log('LogRebase events:', events);
+            }).then(async events => {
+                for (let i = 0; i < events.length; i++) {
+                    const event = events[i];
+                    const blockNumber = event.blockNumber;
+                    const block = await web3.eth.getBlock(blockNumber);
+                    const timestamp = block.timestamp;
+                    console.log('LogRebase event timestamp:', new Date(timestamp * 1000));
+                }
             }).catch(error => {
                 console.error('Error fetching LogRebase events:', error);
             });
