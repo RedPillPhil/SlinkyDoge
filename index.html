@@ -518,6 +518,57 @@ var graphina_localize = {"ajaxurl":"https:\/\/mammothtoken.xyz\/wp-admin\/admin-
     });
 </script>
 
+ <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Call the calculateNextRebase function when the page loads or after a successful rebase
+            calculateNextRebase();
+        });
+
+        function calculateNextRebase() {
+            // Get the timestamp of the last successful rebase (this could be retrieved from the blockchain)
+            const lastRebaseTimestamp = ...; // Replace ... with the timestamp
+
+            // Calculate the timestamp for the next rebase (24 hours after the last rebase)
+            const nextRebaseTimestamp = lastRebaseTimestamp + (24 * 60 * 60 * 1000);
+
+            // Start a countdown to the next rebase timestamp
+            startCountdown(nextRebaseTimestamp);
+        }
+
+        function startCountdown(timestamp) {
+            // Get the countdown timer element
+            const countdownElement = document.getElementById('countdown');
+
+            // Set up a timer to update the countdown periodically (every second)
+            const timer = setInterval(() => {
+                const currentTime = Date.now();
+                const timeUntilRebase = timestamp - currentTime;
+
+                // Check if the countdown has reached zero (rebase time)
+                if (timeUntilRebase <= 0) {
+                    // Stop the countdown timer
+                    clearInterval(timer);
+
+                    // Call the function to trigger the rebase process or perform any other action
+                    // For example:
+                    // performRebase();
+                } else {
+                    // Update the countdown timer element with the remaining time
+                    countdownElement.innerText = formatTime(timeUntilRebase);
+                }
+            }, 1000); // Update the countdown every second
+        }
+
+        // Function to format the remaining time in hours, minutes, and seconds
+        function formatTime(time) {
+            const hours = Math.floor(time / (1000 * 60 * 60));
+            const minutes = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((time % (1000 * 60)) / 1000);
+
+            return `${hours}h ${minutes}m ${seconds}s`;
+        }
+    </script>
+
 <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js/dist/web3.min.js"></script>
 
 <script>
