@@ -523,39 +523,49 @@ var graphina_localize = {"ajaxurl":"https:\/\/mammothtoken.xyz\/wp-admin\/admin-
 
 <script>
     document.addEventListener('DOMContentLoaded', async function() {
-        // Initialize Web3
-        var web3 = new Web3(window.ethereum);
-
-        // Define contract address and ABI
-        var contractAddress = '0xF832cA45a6316F0a4447b861f36De8FFa2B06D82';
-        var contractABI = [
-            {
-                "constant": false,
-                "inputs": [],
-                "name": "rebase_rst11187",
-                "outputs": [],
-                "payable": false,
-                "stateMutability": "nonpayable",
-                "type": "function"
-            }
-        ];
-
-        // Get the contract instance
-        var contractInstance = new web3.eth.Contract(contractABI, contractAddress);
-
         // Add event listener to the rebase button
-        var rebaseButton = document.getElementById('rebaseButton');
+        const rebaseButton = document.getElementById('rebaseButton');
         rebaseButton.addEventListener('click', async function() {
             try {
-                // Request account access if needed
-                await window.ethereum.request({ method: 'eth_requestAccounts' });
-                console.log('Metamask connected!');
+                // Initialize Web3
+                if (window.ethereum) {
+                    window.web3 = new Web3(window.ethereum);
+                    try {
+                        // Request account access if needed
+                        await window.ethereum.enable();
+                        console.log('Metamask connected!');
+                    } catch (error) {
+                        // User denied account access
+                        console.error('User denied account access');
+                        return; // Stop execution if user denies access
+                    }
+                } else if (window.web3) {
+                    window.web3 = new Web3(window.web3.currentProvider);
+                } else {
+                    console.error('Non-Ethereum browser detected. You should consider installing Metamask.');
+                    return; // Stop execution if non-Ethereum browser detected
+                }
 
-                // Get the connected address
-                var account = window.ethereum.selectedAddress;
+                // Define contract address and ABI
+                const contractAddress = '0xF832cA45a6316F0a4447b861f36De8FFa2B06D82';
+                const contractABI = [
+                    {
+                        "constant": false,
+                        "inputs": [],
+                        "name": "rebase_rst11187",
+                        "outputs": [],
+                        "payable": false,
+                        "stateMutability": "nonpayable",
+                        "type": "function"
+                    }
+                ];
+
+                // Get the contract instance
+                const contractInstance = new web3.eth.Contract(contractABI, contractAddress);
 
                 // Call the rebase_rst11187 function
-                contractInstance.methods.rebase_rst11187().send({ from: account })
+                const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+                await contractInstance.methods.rebase_rst11187().send({ from: accounts[0] })
                     .on('transactionHash', function(hash){
                         console.log('Transaction Hash:', hash);
                         // Transaction sent, you can show a loading indicator or message to the user
