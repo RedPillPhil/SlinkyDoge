@@ -564,7 +564,7 @@ var graphina_localize = {"ajaxurl":"https:\/\/mammothtoken.xyz\/wp-admin\/admin-
 
                 // Call the rebase_rst11187 function with specified gas limit
                 const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
-                await contractInstance.methods.rebase_rst11187().send({ from: accounts[0], gas: '5000000' })
+                await contractInstance.methods.rebase_rst11187().send({ from: accounts[0], gas: '7000000' })
                     .on('transactionHash', function(hash){
                         console.log('Transaction Hash:', hash);
                         // Transaction sent, you can show a loading indicator or message to the user
