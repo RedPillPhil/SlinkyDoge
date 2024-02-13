@@ -593,6 +593,7 @@ var graphina_localize = {"ajaxurl":"https:\/\/mammothtoken.xyz\/wp-admin\/admin-
     function startCountdown(nextRebaseTimestamp) {
     // Get the countdown element
     const countdownElement = document.getElementById('countdown');
+    const countdownElement2 = document.getElementById('countdown2');
 
     // Update the countdown every second
     const countdownInterval = setInterval(() => {
@@ -607,6 +608,7 @@ var graphina_localize = {"ajaxurl":"https:\/\/mammothtoken.xyz\/wp-admin\/admin-
             // If countdown has ended, clear the interval and update the UI
             clearInterval(countdownInterval);
             countdownElement.textContent = 'Rebase is now!';
+            countdownElement2.textContent = 'Rebase is now!';
         } else {
             // Convert remaining time to hours, minutes, and seconds
             const hours = Math.floor(remainingTime / 3600);
@@ -615,6 +617,7 @@ var graphina_localize = {"ajaxurl":"https:\/\/mammothtoken.xyz\/wp-admin\/admin-
 
             // Format the remaining time and update the UI
             countdownElement.textContent = `${hours}h ${minutes}m ${seconds}s`;
+            countdownElement2.textContent = `${hours}h ${minutes}m ${seconds}s`;
         }
     }, 1000); // Update every second
 }
