@@ -298,7 +298,7 @@ var graphina_localize = {"ajaxurl":"https:\/\/mammothtoken.xyz\/wp-admin\/admin-
                     <span class="lqd-menu-link transition-all lqd-menu-link-top flex items-center" id="marketCap2">Market Cap: Loading... </span>
                 </li>
                      <li class="menu-item menu-item-type-custom menu-item-object-custom lqd-menu-li relative lqd-menu-li-top">
-                    <span class="lqd-menu-link transition-all lqd-menu-link-top flex items-center" id="countdown2">Countdown: Loading... </span>
+                    <span class="lqd-menu-link transition-all lqd-menu-link-top flex items-center" id="countdown2">Next Rebase: Loading... </span>
                 </li>
             </ul>
         </div>
@@ -616,8 +616,8 @@ var graphina_localize = {"ajaxurl":"https:\/\/mammothtoken.xyz\/wp-admin\/admin-
             const seconds = remainingTime % 60;
 
             // Format the remaining time and update the UI
-            countdownElement.textContent = `${hours}h ${minutes}m ${seconds}s`;
-            countdownElement2.textContent = `${hours}h ${minutes}m ${seconds}s`;
+            countdownElement.textContent = `Next Rebase: ${hours}h ${minutes}m ${seconds}s`;
+            countdownElement2.textContent = `Next Rebase: ${hours}h ${minutes}m ${seconds}s`;
         }
     }, 1000); // Update every second
 }
