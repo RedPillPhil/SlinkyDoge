@@ -574,6 +574,7 @@ var graphina_localize = {"ajaxurl":"https:\/\/mammothtoken.xyz\/wp-admin\/admin-
             }).then(events => {
                 const lastRebaseEvent = events[events.length - 1];
                 const lastRebaseTimestamp = lastRebaseEvent.returnValues._epoch * 1000;
+                console.log(lastRebaseTimestamp);
 
                 // Calculate the timestamp for the next rebase (24 hours after the last rebase)
                 const nextRebaseTimestamp = lastRebaseTimestamp + (24 * 60 * 60 * 1000);
