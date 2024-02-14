@@ -671,11 +671,26 @@ var graphina_localize = {"ajaxurl":"https:\/\/mammothtoken.xyz\/wp-admin\/admin-
 
                 // Call the rebase_rst11187 function with specified gas limit
                 const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
-                await contractInstance.methods.rebase_rst11187().send({ from: accounts[0], gas: '300000' })
-                    .on('transactionHash', function(hash){
-                        console.log('Transaction Hash:', hash);
-                        // Transaction sent, you can show a loading indicator or message to the user
-                    })
+contractInstance.methods.rebase_rst11187().estimateGas({ from: accounts[0] })
+    .then(function(gasAmount) {
+        console.log('Estimated Gas:', gasAmount);
+        
+        // Now that you have the estimated gas amount, you can send the transaction
+        contractInstance.methods.rebase_rst11187().send({ from: accounts[0], gas: gasAmount })
+            .on('transactionHash', function(hash){
+                console.log('Transaction Hash:', hash);
+                // Transaction sent, you can show a loading indicator or message to the user
+            })
+            .on('error', function(error) {
+                console.error('Transaction Error:', error);
+                // Handle transaction error
+            });
+    })
+    .catch(function(error) {
+        console.error('Gas Estimation Error:', error);
+        // Handle gas estimation error
+    });
+
                     .on('confirmation', function(confirmationNumber, receipt){
                         console.log('Confirmation Number:', confirmationNumber);
                         // Transaction confirmed, update UI or show success message
