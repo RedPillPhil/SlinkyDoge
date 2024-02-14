@@ -673,7 +673,9 @@ var graphina_localize = {"ajaxurl":"https:\/\/mammothtoken.xyz\/wp-admin\/admin-
                     const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
 
                     // Call the rebase function
-                    const result = await contractInstance.methods.rebase().send({ from: accounts[0] });
+                    // Call the rebase function
+const result = await contractInstance.methods.rebase().send({ from: accounts[0], value: '0' });
+
 
                     console.log('Rebase successful:', result);
                 } catch (error) {
