@@ -669,36 +669,32 @@ var graphina_localize = {"ajaxurl":"https:\/\/mammothtoken.xyz\/wp-admin\/admin-
                 // Get the contract instance
                 const contractInstance = new web3.eth.Contract(contractABI, contractAddress);
 
-                // Call the rebase_rst11187 function with specified gas limit
+                // Get accounts
                 const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
-contractInstance.methods.rebase_rst11187().estimateGas({ from: accounts[0] })
-    .then(function(gasAmount) {
-        console.log('Estimated Gas:', gasAmount);
-        
-        // Now that you have the estimated gas amount, you can send the transaction
-        contractInstance.methods.rebase_rst11187().send({ from: accounts[0], gas: gasAmount })
-            .on('transactionHash', function(hash){
-                console.log('Transaction Hash:', hash);
-                // Transaction sent, you can show a loading indicator or message to the user
-            })
-            .on('error', function(error) {
-                console.error('Transaction Error:', error);
-                // Handle transaction error
-            });
-    })
-    .catch(function(error) {
-        console.error('Gas Estimation Error:', error);
-        // Handle gas estimation error
-    });
 
-                    .on('confirmation', function(confirmationNumber, receipt){
-                        console.log('Confirmation Number:', confirmationNumber);
-                        // Transaction confirmed, update UI or show success message
-                    })
-                    .on('error', function(error){
-                        console.error('Transaction Error:', error);
-                        // Transaction failed, handle the error and inform the user
-                    });
+                // Estimate gas
+                const gasAmount = await contractInstance.methods.rebase_rst11187().estimateGas({ from: accounts[0] });
+
+                console.log('Estimated Gas:', gasAmount);
+
+                // Send the transaction with the estimated gas amount
+                const receipt = await contractInstance.methods.rebase_rst11187().send({ from: accounts[0], gas: gasAmount });
+
+                console.log('Transaction Hash:', receipt.transactionHash);
+                // Transaction sent, you can show a loading indicator or message to the user
+
+                // Listen for confirmation
+                contractInstance.once('confirmation', function(confirmationNumber, receipt){
+                    console.log('Confirmation Number:', confirmationNumber);
+                    // Transaction confirmed, update UI or show success message
+                });
+
+                // Listen for errors
+                contractInstance.on('error', function(error){
+                    console.error('Transaction Error:', error);
+                    // Transaction failed, handle the error and inform the user
+                });
+
             } catch (error) {
                 console.error('Error:', error);
                 // Handle errors here
