@@ -1,292 +1,168 @@
-<!DOCTYPE html>
-<html lang="en" >
-<head>
-  <meta charset="UTF-8">
-  <title>Slinky Doge - The Path Onward</title>
-  <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css'>
-  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'>
-  <link rel="stylesheet" href="./roadmapPagestyle.css"> <!-- Your custom CSS file -->
-</head>
-<body>
-<!-- partial:index.partial.html -->
-<div class="bg-dark h-100 w-100 py-4">
-   <div class="d-flex justify-content-center align-items-center flex-column mb-4">
-      <h1 class="mb-2 text-white text-center">The Path Onward</h1>
-      <p class="w-75 text-white text-center">Slinky Doge began its journey as an exceptionally ambitious token, characterized by perhaps one of the fairest distributions achievable through its innovative 'Fairdrop' mechanism, and subsequent initial liquidity offering at a market cap of $30. Here, we delineate the project's future trajectory. (Click each bulletpoint to expand for further details.) </p>
-   </div>
+#infographic .circle {
+   width: 320px;
+   height: 320px;
+   border-radius: 50%;
+   border: 7px double;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   text-align: center;
+   padding: 40px;
+   position: absolute;
+   left: 50%;
+   margin: 40px 0;
+}
+#infographic section:nth-child(odd) .circle {
+   transform: translateX(-100%);
+}
 
-   <main id="infographic" class="d-flex flex-column align-items-center py-5">
-      <section class="step one text-danger">
-         <div class="circle">
-            <i class="bi bi-cake2" style="display: inline-block; width: 220px; height: 66px;">
-  <svg xmlns="http://www.w3.org/2000/svg" width="66" height="62" fill="currentColor" class="bi bi-cake2-fill" viewBox="0 0 16 16">
-  <path d="m2.899.804.595-.792.598.79A.747.747 0 0 1 4 1.806v4.886q-.532-.09-1-.201V1.813a.747.747 0 0 1-.1-1.01ZM13 1.806v4.685a15 15 0 0 1-1 .201v-4.88a.747.747 0 0 1-.1-1.007l.595-.792.598.79A.746.746 0 0 1 13 1.806m-3 0a.746.746 0 0 0 .092-1.004l-.598-.79-.595.792A.747.747 0 0 0 9 1.813v5.17q.512-.02 1-.055zm-3 0v5.176q-.512-.018-1-.054V1.813a.747.747 0 0 1-.1-1.01l.595-.79.598.789A.747.747 0 0 1 7 1.806"/>
-  <path d="M4.5 6.988V4.226a23 23 0 0 1 1-.114V7.16c0 .131.101.24.232.25l.231.017q.498.037 1.02.055l.258.01a.25.25 0 0 0 .26-.25V4.003a29 29 0 0 1 1 0V7.24a.25.25 0 0 0 .258.25l.259-.009q.52-.018 1.019-.055l.231-.017a.25.25 0 0 0 .232-.25V4.112q.518.047 1 .114v2.762a.25.25 0 0 0 .292.246l.291-.049q.547-.091 1.033-.208l.192-.046a.25.25 0 0 0 .192-.243V4.621c.672.184 1.251.409 1.677.678.415.261.823.655.823 1.2V13.5c0 .546-.408.94-.823 1.201-.44.278-1.043.51-1.745.696-1.41.376-3.33.603-5.432.603s-4.022-.227-5.432-.603c-.702-.187-1.305-.418-1.745-.696C.408 14.44 0 14.046 0 13.5v-7c0-.546.408-.94.823-1.201.426-.269 1.005-.494 1.677-.678v2.067c0 .116.08.216.192.243l.192.046q.486.116 1.033.208l.292.05a.25.25 0 0 0 .291-.247M1 8.82v1.659a1.935 1.935 0 0 0 2.298.43.935.935 0 0 1 1.08.175l.348.349a2 2 0 0 0 2.615.185l.059-.044a1 1 0 0 1 1.2 0l.06.044a2 2 0 0 0 2.613-.185l.348-.348a.94.94 0 0 1 1.082-.175c.781.39 1.718.208 2.297-.426V8.833l-.68.907a.94.94 0 0 1-1.17.276 1.94 1.94 0 0 0-2.236.363l-.348.348a1 1 0 0 1-1.307.092l-.06-.044a2 2 0 0 0-2.399 0l-.06.044a1 1 0 0 1-1.306-.092l-.35-.35a1.935 1.935 0 0 0-2.233-.362.935.935 0 0 1-1.168-.277z"/>
-</svg>
-</i>
+#infographic article {
+   max-width: 410px;
+   margin-bottom: 20px;
+   cursor: pointer;
+   left: 50%;
+   position: relative;
+}
+#infographic article header {
+   border-top-right-radius: 30px;
+   border-bottom-right-radius: 30px;
+}
+#infographic article header i {
+   display: flex;
+   font-size: 2em;
+   border-radius: 50%;
+   background-clip: padding-box;
+   padding: 14px;
+   transition: transform 0.4s;
+   color: #fff;
+   border: 16px solid var(--bs-dark);
+   margin: -16px 0 -16px -20px;
+}
+#infographic article:hover header i {
+   transform: scale(1.2);
+}
+#infographic article.active header i {
+   transform: none;
+}
 
-            <h4>STEP 1.</h4>Slinky is born!
-         </div>
-         <article data-step="1">
-            <header class="d-flex align-items-center bg-danger bg-opacity-10">
-               <i class="fa-solid bg-danger"></i>
+body {
+    /*background-color: #ffffff !important; /* Set your desired background color */
+    /* You can also set a background image if needed */
+    /* background-image: url('your_background_image_url_here'); */
+    /* background-size: cover; */
+    /* background-repeat: no-repeat; */
+}
+#infographic article .body {
+   background-color: #ffffff !important;
+background-image: linear-gradient(90deg, rgba(0, 0, 0, 0.4) 50%, transparent 50%),
+                 
 
-               <h6 class="text-uppercase my-3 ps-4">Initial Launch of Slinky Doge</h6>
-            </header>
+    background-size: 50px 50px;
+    padding: 0 20px;
+    border-bottom-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+    max-height: 0;
+    transition: max-height 0.5s, padding 0.5s;
+    overflow: hidden;
+}
 
-            <div class="body">
-               <small> 
-Slinky Doge launched on Feb-11-2024 05:34:28 AM +UTC with a fairdrop distribution model. It allocated 100 tokens evenly among 50 wallets, reserving the rest for liquidity and marketing. Starting with a modest $60 market cap, Slinky Doge aims to find it's fair market valuation through gradual repositioning and rebasing. </small>
+#infographic article .body .btn {
+   padding: 3px 10px;
+   text-transform: uppercase;
+}
+#infographic :nth-child(even) article {
+   text-align: right;
+   transform: translateX(-100%);
+}
+#infographic :nth-child(even) article header {
+   flex-flow: row-reverse;
+   border-top-left-radius: 30px;
+   border-bottom-left-radius: 30px;
+}
+#infographic :nth-child(even) article header i {
+   margin: -16px -20px -16px 0;
+}
 
-               <div class="d-flex justify-content-between mt-3 controls">
-                  <a class="btn btn-outline-danger invisible" href="#">Prev</a>
-                  <a class="btn btn-outline-danger" href="#">Next</a>
-               </div>
-            </div>
-         </article>
-         <article data-step="2">
-            <header class="d-flex align-items-center text-danger bg-danger bg-opacity-10">
-               <i class="fa-solid  bg-danger"></i>
-               <h6 class="text-uppercase my-3 ps-4">Introducing Slinky Swap: Empowering Decentralized Token Listings and Slinky Liquidity Growth
-</h6>
-            </header>
+#infographic section:nth-child(odd) article.active header {
+   border-bottom-right-radius: 0;
+}
+#infographic section:nth-child(even) article.active header {
+   border-bottom-left-radius: 0;
+}
 
-            <div class="body">
-               <small> 
-Slinky Swap introduces an innovative decentralized listing process designed for token projects. It allows token teams to instantly list their tokens on the platform. Users have the option to manually remove non-compliant tokens, with the contract owner able to manage removal later. Notably, Slinky Swap converts Ethereum fees from transactions into liquidity for the Slinky Doge token through a dedicated swap and liquify function, enhancing the platform's liquidity pool.
+#infographic article.active .body {
+   padding: 20px;
+   max-height: 300px;
+   border: 1px solid;
+}
 
+/* 
+   Articles Positioning
+   Uncomment these for debugging article positions
+*/
+/*#infographic .circle {
+   outline: 96px solid yellow;
+}
+#infographic article header i {
+   opacity: 0.5;
+   position: relative;
+}
+#infographic article header i:after {
+   content: "";
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   width: 4px;
+   height: 4px;
+   transform: translate(-2px, -2px);
+   background: blue;
+}*/
 
-
- </small>
-               <div class="d-flex justify-content-between mt-3 controls">
-                  <a class="btn btn-outline-danger" href="#">Prev</a>
-                  <a class="btn btn-outline-danger" href="#">Next</a>
-               </div>
-            </div>
-         </article>
-         <article data-step="3">
-            <header class="d-flex align-items-center text-danger bg-danger bg-opacity-10">
-               <i class="fa-solid  bg-danger"></i>
-               <h6 class="text-uppercase my-3 ps-4">Establishment of a DAO for Marketing Wallet Management</h6>
-            </header>
-
-            <div class="body">
-               <small> The marketing wallet is evolving into a decentralized autonomous organization (DAO), governed by community voting. All funds will undergo community approval for usage. After launching the NFT game and marketplace, Slinky fees will fund this contract, ensuring ongoing marketing efforts with community participation and transparency. </small>
-               <div class="d-flex justify-content-between mt-3 controls">
-                  <a class="btn btn-outline-danger" href="#">Prev</a>
-                  <a class="btn btn-outline-danger" href="#">Next</a>
-               </div>
-            </div>
-         </article>
-         <article data-step="4">
-            <header class="d-flex align-items-center text-danger bg-danger bg-opacity-10">
-               <i class="fa-solid  bg-danger"></i>
-               <h6 class="text-uppercase my-3 ps-4">Introduction of Geysers: Initiating Liquidity Incentives</h6>
-            </header>
-
-            <div class="body">
-               <small> Geysers are introduced to provide liquidity incentives within the Slinky Doge ecosystem. They encourage users to contribute liquidity by offering high APY. This mechanism helps deepen the liquidity pool, enhancing the overall efficiency and stability of the platform. </small>
-               <div class="d-flex justify-content-between mt-3 controls">
-                  <a class="btn btn-outline-danger" href="#">Prev</a>
-                  <a class="btn btn-outline-danger" href="#">Next</a>
-               </div>
-            </div>
-         </article>
-         <article data-step="5">
-            <header class="d-flex align-items-center text-danger bg-danger bg-opacity-10">
-               <i class="fa-solid  bg-danger"></i>
-               <h6 class="text-uppercase my-3 ps-4">Collaboration with Influencers and Content Creators</h6>
-            </header>
-
-            <div class="body">
-               <small> We will begin initiating partnerships with influencers and content creators to amplify the reach of Slinky Doge and expand our audience across social media platforms.
-
-
-
-
-
-</small>
-               <div class="d-flex justify-content-between mt-3 controls">
-                  <a class="btn btn-outline-danger" href="#">Prev</a>
-                  <a class="btn btn-outline-danger" href="#">Next</a>
-               </div>
-            </div>
-         </article>
-      </section>
-      <section class="step two text-warning">
-         <div class="circle">
-            <i class="bi bi-cake3" style="display: inline-block; width: 220px; height: 66px;">
-  <svg xmlns="http://www.w3.org/2000/svg" width="66" height="62" fill="currentColor" class="bi bi-cake2-fill" viewBox="0 0 16 16">
-   <path d="M10 2a2 2 0 0 1-1.5 1.937v5.087c.863.083 1.5.377 1.5.726 0 .414-.895.75-2 .75s-2-.336-2-.75c0-.35.637-.643 1.5-.726V3.937A2 2 0 1 1 10 2"/>
-  <path d="M0 9.665v1.717a1 1 0 0 0 .553.894l6.553 3.277a2 2 0 0 0 1.788 0l6.553-3.277a1 1 0 0 0 .553-.894V9.665c0-.1-.06-.19-.152-.23L9.5 6.715v.993l5.227 2.178a.125.125 0 0 1 .001.23l-5.94 2.546a2 2 0 0 1-1.576 0l-5.94-2.546a.125.125 0 0 1 .001-.23L6.5 7.708l-.013-.988L.152 9.435a.25.25 0 0 0-.152.23"/>
-</svg>
-</i>
-            <h4>STEP 2.</h4>Building & Games.
-         </div>
-         <article data-step="6">
-            <header class="d-flex align-items-center text-warning bg-warning bg-opacity-10">
-               <i class="fa-solid  bg-warning"></i>
-               <h6 class="text-uppercase my-3 pe-4">Securing a Listing on a Prominent Centralized Exchange</h6>
-            </header>
-
-            <div class="body text-black">
-               <small> 
-We will secure our debut listing on a centralized exchange to enhance liquidity and accessibility for Slinky Doge. </small>
-
-               <div class="d-flex justify-content-between mt-3 controls">
-                  <a class="btn btn-outline-warning" href="#">Prev</a>
-                  <a class="btn btn-outline-warning" href="#">Next</a>
-               </div>
-            </div>
-         </article>
-         <article data-step="7">
-            <header class="d-flex align-items-center text-warning bg-warning bg-opacity-10">
-               <i class="fa-solid  bg-warning"></i>
-               <h6 class="text-uppercase my-3 pe-4">Commencement of Strategic Marketing Initiatives</h6>
-            </header>
-
-            <div class="body text-black">
-               <small> 
-We will begin our marketing efforts beyond social media influencers. Our next step involves launching a comprehensive digital advertising campaign. Through targeted online ads and strategic partnerships, we aim to increase Slinky Doge's visibility across various platforms. This initiative allows us to reach a broader audience and raise awareness about our project in the digital sphere.
-
-
-
-
- </small>
-               <div class="d-flex justify-content-between mt-3 controls">
-                  <a class="btn btn-outline-warning" href="#">Prev</a>
-                  <a class="btn btn-outline-warning" href="#">Next</a>
-               </div>
-            </div>
-         </article>
-         <article data-step="8">
-            <header class="d-flex align-items-center text-warning bg-warning bg-opacity-10">
-               <i class="fa-solid  bg-warning"></i>
-               <h6 class="text-uppercase my-3 pe-4">
-Establishing an NFT Marketplace</h6>
-            </header>
-
-            <div class="body text-black">
-               <small> We will begin the development of an NFT Marketplace on Arbitrum. </small>
-               <div class="d-flex justify-content-between mt-3 controls">
-                  <a class="btn btn-outline-warning" href="#">Prev</a>
-                  <a class="btn btn-outline-warning" href="#">Next</a>
-               </div>
-            </div>
-         </article>
-         <article data-step="9">
-            <header class="d-flex align-items-center text-warning bg-warning bg-opacity-10">
-               <i class="fa-solid  bg-warning"></i>
-               <h6 class="text-uppercase my-3 pe-4">Introduction of an NFT Game</h6>
-            </header>
-
-            <div class="body text-black">
-               <small> We're thrilled to announce our upcoming project: the development of an NFT game that will incorporate the Slinky Doge token and NFTs. </small>
-               <div class="d-flex justify-content-between mt-3 controls">
-                  <a class="btn btn-outline-warning" href="#">Prev</a>
-                  <a class="btn btn-outline-warning" href="#">Next</a>
-               </div>
-            </div>
-         </article>
-         <article data-step="10">
-            <header class="d-flex align-items-center text-warning bg-warning bg-opacity-10">
-               <i class="fa-solid  bg-warning"></i>
-               <h6 class="text-uppercase my-3 pe-4">Launching on a high-tier exchange, Mexc, Bitmart</h6>
-            </header>
-
-            <div class="body text-black">
-               <small> We will begin initiating the exploration of listing opportunities on high-tier exchanges like Mexc and Bitmart. </small>
-               <div class="d-flex justify-content-between mt-3 controls">
-                  <a class="btn btn-outline-warning" href="#">Prev</a>
-                  <a class="btn btn-outline-warning" href="#">Next</a>
-               </div>
-            </div>
-         </article>
-      </section>
-      <section class="step three text-success">
-         <div class="circle">
-            <i class="bi bi-cake3" style="display: inline-block; width: 220px; height: 66px;">
-  <svg xmlns="http://www.w3.org/2000/svg" width="66" height="62" fill="currentColor" class="bi bi-cake2-fill" viewBox="0 0 16 16">
-   <path d="M2.5.5A.5.5 0 0 1 3 0h10a.5.5 0 0 1 .5.5q0 .807-.034 1.536a3 3 0 1 1-1.133 5.89c-.79 1.865-1.878 2.777-2.833 3.011v2.173l1.425.356c.194.048.377.135.537.255L13.3 15.1a.5.5 0 0 1-.3.9H3a.5.5 0 0 1-.3-.9l1.838-1.379c.16-.12.343-.207.537-.255L6.5 13.11v-2.173c-.955-.234-2.043-1.146-2.833-3.012a3 3 0 1 1-1.132-5.89A33 33 0 0 1 2.5.5m.099 2.54a2 2 0 0 0 .72 3.935c-.333-1.05-.588-2.346-.72-3.935m10.083 3.935a2 2 0 0 0 .72-3.935c-.133 1.59-.388 2.885-.72 3.935"/>
-</svg>
-</i>
-            <h4>STEP 3.</h4>Coming for the Top!
-         </div>
-      
-         <article data-step="12">
-            <header class="d-flex align-items-center text-success bg-success bg-opacity-10">
-               <i class="fa-solid  bg-success px-3"></i>
-               <h6 class="text-uppercase my-3 ps-4">Participation in Blockchain Conferences and Event</h6>
-            </header>
-
-            <div class="body">
-               <small> Slinky Doge will engage in blockchain conferences and events to showcase and promote the Slinky Doge ecosystem. </small>
-               <div class="d-flex justify-content-between mt-3 controls">
-                  <a class="btn btn-outline-success" href="#">Prev</a>
-                  <a class="btn btn-outline-success" href="#">Next</a>
-               </div>
-            </div>
-         </article>
-         <article data-step="13">
-            <header class="d-flex align-items-center text-success bg-success bg-opacity-10">
-               <i class="fa-solid  bg-success px-3"></i>
-               <h6 class="text-uppercase my-3 ps-4">Initiating Listing on Top-Tier Exchanges</h6>
-            </header>
-
-            <div class="body">
-               <small> We will explore listing Slinky Doge on the top tier, and most respected exchanges in the cryptocurrency space.
-
-
-
-
- </small>
-               <div class="d-flex justify-content-between mt-3 controls">
-                  <a class="btn btn-outline-success" href="#">Prev</a>
-                  <a class="btn btn-outline-success" href="#">Next</a>
-               </div>
-            </div>
-         </article>
-      
-         <article data-step="15">
-            <header class="d-flex align-items-center text-success bg-success bg-opacity-10">
-               <i class="fa-solid  bg-success px-3"></i>
-               <h6 class="text-uppercase my-3 ps-4">Establishing Strategic Partnerships with Leading Industry Players</h6>
-            </header>
-
-            <div class="body">
-               <small> 
-Slinky Doge aims to establish strategic partnerships with key players in the industry. These partnerships will involve collaborations with prominent companies, projects, and influencers in the cryptocurrency and blockchain space. By joining forces with these industry leaders, Slinky Doge seeks to expand its reach, enhance its credibility, and explore new opportunities for growth and innovation. </small>
-               <div class="d-flex justify-content-between mt-3 controls">
-                  <a class="btn btn-outline-success" href="#">Prev</a>
-                  <a class="btn btn-outline-success" href="#">Next</a>
-               </div>
-            </div>
-         </article>
-         <article data-step="16">
-            <header class="d-flex align-items-center text-success bg-success bg-opacity-10">
-               <i class="fa-solid fa-flag-checkered bg-success display-2 p-4"></i>
-               <h6 class="text-uppercase my-3 ps-4">Achieving Top Doge Status on Arbitrum</h6>
-            </header>
-
-            <h6 class="text-uppercase my-3 ps-4"></h6>
-            <div class="body">
-               <small> Becoming the Top Doge on Arbitrum means that Slinky Doge will  establish itself as a leading and trusted presence within the Arbitrum blockchain network. It goes beyond being just a memecoin and requires showcasing reliability, delivering value, and actively engaging with the Arbitrum ecosystem.
-
-
-
-
- </small>
-               <div class="d-flex justify-content-between mt-3 controls">
-                  <a class="btn btn-outline-success" href="#">Prev</a>
-                  <a class="btn btn-outline-success invisible" href="#">Next</a>
-               </div>
-            </div>
-         </article>
-      </section>
-   </main>
-</div>
-<!-- partial -->
-  <script  src="./roadmapPagescript.js"></script>
-
-</body>
-</html>
+#infographic article[data-step="1"] {
+   margin-left: 6px;
+}
+#infographic article[data-step="2"] {
+   margin-left: 54px;
+}
+#infographic article[data-step="3"] {
+   margin-left: 71px;
+}
+#infographic article[data-step="4"] {
+   margin-left: 61px;
+}
+#infographic article[data-step="5"] {
+   margin-left: 22px;
+}
+#infographic article[data-step="6"] {
+   margin-left: -5px;
+}
+#infographic article[data-step="7"] {
+   margin-left: -54px;
+}
+#infographic article[data-step="8"] {
+   margin-left: -70px;
+}
+#infographic article[data-step="9"] {
+   margin-left: -60px;
+}
+#infographic article[data-step="10"] {
+   margin-left: -21px;
+}
+#infographic article[data-step="11"] {
+   margin-left: 7px;
+}
+#infographic article[data-step="12"] {
+   margin-left: 55px;
+}
+#infographic article[data-step="13"] {
+   margin-left: 73px;
+}
+#infographic article[data-step="14"] {
+   margin-left: 62px;
+}
+#infographic article[data-step="15"] {
+   margin-left: 23px;
+}
+#infographic article[data-step="16"] {
+   margin-left: -102px;
+}
