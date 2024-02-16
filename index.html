@@ -263,6 +263,17 @@ var graphina_localize = {"ajaxurl":"https:\/\/mammothtoken.xyz\/wp-admin\/admin-
     }
 </style>
 
+    <style>
+        @keyframes glitter {
+            0% {
+                text-shadow: 0 0 5px #ffd700, 0 0 10px #ffd700, 0 0 15px #ffd700, 0 0 20px #ff0000, 0 0 25px #ff0000, 0 0 30px #ff0000, 0 0 35px #ff0000;
+            }
+            100% {
+                text-shadow: 0 0 5px #ffd700, 0 0 10px #ffd700, 0 0 15px #ffd700, 0 0 20px #ff0000, 0 0 25px #ff0000, 0 0 30px #ff0000, 0 0 35px #ff0000;
+            }
+        }
+    </style>
+
 
 <div class="information-bar">
     <ul>
@@ -274,6 +285,12 @@ var graphina_localize = {"ajaxurl":"https:\/\/mammothtoken.xyz\/wp-admin\/admin-
         <li><span class="number" id="totalSupply">Supply: Loading...</span></li>
         <li><span class="number" id="marketCap">Mcap: Loading...</span></li>
         <li><span class="number" id="countdown">Next Rebase: Loading...</span></li>
+        <li>
+            <a href="roadmap.html" style="color: yellow; text-decoration: none;">
+                <span class="number">Road Map <span style="animation: glitter 1s infinite;">(New!)</span></span>
+            </a>
+        </li>
+
     </ul>
 </div>
 
@@ -724,7 +741,8 @@ document.addEventListener('DOMContentLoaded', async function() {
                 <li id="menu-item-299" class="menu-item menu-item-type-custom menu-item-object-custom lqd-menu-li relative lqd-menu-li-top menu-item-299"><a href="#Tokenomics" class="lqd-menu-link transition-all lqd-menu-link-top flex items-center">Tokenomics</a></li>
                 <li id="menu-item-6070" class="menu-item menu-item-type-custom menu-item-object-custom lqd-menu-li relative lqd-menu-li-top menu-item-6070"><a href="#buy" class="lqd-menu-link transition-all lqd-menu-link-top flex items-center">Buy</a></li>
                 <li id="menu-item-6070" class="menu-item menu-item-type-custom menu-item-object-custom lqd-menu-li relative lqd-menu-li-top menu-item-6070">
-    <a href="roadmap.html" class="lqd-menu-link transition-all lqd-menu-link-top flex items-center">Roadmap</a>
+    <a href="roadmap.html" class="lqd-menu-link transition-all lqd-menu-link-top flex items-center" style="color: yellow; text-decoration: none; animation: glitter 1s infinite;">Roadmap</a>
+
 </li>
 
 
