@@ -34,12 +34,10 @@ html {
 body {
   margin: 0;
   background-color: #1B0433;
-  background-image: url("https://www.yudiz.com/codepen/photography-banner/frame.png");
-
 }
 
 ::selection {
-  background-color: rgba(121, 0, 238, 0.2);
+  background-color: rgba(241, 231, 40, 0.2);
   color: #ffffff;
 }
 
