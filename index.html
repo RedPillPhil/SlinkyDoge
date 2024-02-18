@@ -945,32 +945,32 @@ document.addEventListener('DOMContentLoaded', async function() {
 				</div>
 <head>
     <!-- Other head content -->
-    <style>
-        .rainbow-button .lqd-btn {
-            /* Adjust padding to give more space for the text */
-            padding: 10px 20px; /* Adjust padding as needed */
-        }
+   <style>
+    .rainbow-button .lqd-btn {
+        /* Adjust padding to give more space for the text */
+        padding: 10px 20px; /* Adjust padding as needed */
+    }
 
-        .rainbow-button .lqd-btn-txt {
-            /* Apply rainbow effect directly to the text */
-            background-image: linear-gradient(45deg, #ff0000, #ff8c00, #fffb00, #008000, #0000ff, #4b0082, #9400d3);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent; /* Make text transparent */
-            animation: rainbow-animation 8s ease infinite;
-            font-size: 24px; /* Set font size */
-            font-family: 'Zombie', cursive; /* Apply zombie-like font */
-        }
+    .rainbow-button .lqd-btn-txt {
+        /* Apply gradient effect directly to the text */
+        background-image: linear-gradient(45deg, #30DAF0, #245B83, #FFEE00);
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent; /* Make text transparent */
+        animation: rainbow-animation 8s ease infinite;
+        font-size: 24px; /* Set font size */
+        font-family: 'Zombie', cursive; /* Apply zombie-like font */
+    }
 
-        @keyframes rainbow-animation {
-            0% {
-                background-position: 0% 50%;
-            }
-            100% {
-                background-position: 100% 50%;
-            }
+    @keyframes rainbow-animation {
+        0% {
+            background-position: 0% 50%;
         }
-    </style>
+        100% {
+            background-position: 100% 50%;
+        }
+    }
+</style>
     <link href="https://fonts.googleapis.com/css2?family=Zombie&display=swap" rel="stylesheet">
 </head>
 <body>
