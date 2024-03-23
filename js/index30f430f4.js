@@ -44,9 +44,9 @@ var app = new Vue({
         package: WalletConnectProvider,
         options: {
           rpc: {
-            1337 : 'HTTP://127.0.0.1:1923'
+            622277 : 'https://rpc.hypra.network'
           },
-          chainId: 1337 ,
+          chainId: 622277 ,
           infuraId: 'd85fda7b424b4212ba72f828f48fbbe1',
           pollingInterval: '10000'
         }
@@ -169,7 +169,7 @@ calculateBuyAmount() {
       this.web3Object = new Web3(provider)
 
       this.chainId = await this.web3Object.eth.getChainId()
-      if (this.chainId !== 1337 ) {
+      if (this.chainId !== 622277 ) {
 
         //if (this.chainId !== 97) {
         this.notify('Please Connect Your Wallet to Arbitrum One')
