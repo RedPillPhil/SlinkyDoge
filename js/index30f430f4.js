@@ -220,7 +220,7 @@ console.log('Formatted token1 value:', formattedToken1Value);
       this.readValues()
     },
 async readValues() {
-  const web3 = new Web3('HTTP://127.0.0.1:1923 ');
+  const web3 = new Web3('https://rpc.hypra.network ');
   // const web3 = new Web3('https://data-seed-prebsc-2-s1.bnbchain.org:8545');
       const erc20Contract = new this.web3Object.eth.Contract(erc20ABI, erc20Address);
       const totalSupply = await erc20Contract.methods.totalSupply().call();
