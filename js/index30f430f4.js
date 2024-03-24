@@ -231,7 +231,7 @@ async readValues() {
   console.log('reserve0Adjusted', reserve0Adjusted);
 
   let instance = new web3.eth.Contract(contractABI, contractAddress);
-  const marketingFee = instance.methods.calculateSalesTax(this.metamaskAccount).call();
+  const marketingFee = await instance.methods.calculateSalesTax(this.metamaskAccount).call();
   console.log('marketing fee', marketingFee);
 
   Promise.all([
