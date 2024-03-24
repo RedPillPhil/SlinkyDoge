@@ -289,12 +289,8 @@
                                         <div class="value">1650%</div>
                                     </div>
                                     <div class="dataRow">
-                                    <span v-if="marketingFee !== null">
-  {{ ((1000 - marketingFee) / 10).toFixed(1) }}%
-</span>
-<span v-else>
-  ?
-</span>
+                                        <div class="name">Marketing Fee</div>
+                                        <div class="value">{{ ((1000 - marketingFee) / 10).toFixed(1) }}%</div>
                                     </div>
                                 </div>
                             </div>
