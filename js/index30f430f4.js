@@ -19,7 +19,7 @@ var app = new Vue({
       getMyEggs: 0,
       claimedEggs: 0,
       token0ValueWithDecimals: 0,
-      marketingFee: 0,
+      marketingFee: null,
       percentage: 0,
       font: 'Inter', 
       fontSize: 20, 
