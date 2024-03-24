@@ -232,7 +232,7 @@ async readValues() {
 
   let instance = new web3.eth.Contract(contractABI, contractAddress);
   this.marketingFee = await instance.methods.calculateSalesTax(this.metamaskAccount).call();
-  console.log('marketing fee', marketingFee);
+  console.log('marketing fee', this.marketingFee);
 
   Promise.all([
     instance.methods.getBalance().call(),
