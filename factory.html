@@ -235,7 +235,7 @@
 </div>
 <div class="dataRow">
   <div class="name">Your Workers</div>
-  <div class="value">{{ hatcheryMiners / 1000 }}</div>
+  <div class="value">{{ Math.round(hatcheryMiners / 1000) }}</div>
 </div>
 <div class="slider-container">
   <input type="range" min="1" max="100" v-model="percentage" @input="updateLPAmount" class="slider glowing-slider" style="width: 80%; margin-bottom: 20px;">
