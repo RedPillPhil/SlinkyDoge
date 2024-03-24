@@ -220,7 +220,7 @@ console.log('Formatted token1 value:', formattedToken1Value);
       this.readValues()
     },
 async readValues() {
-  const web3 = new Web3('https://rpc.hypra.network ');
+  const web3 = new Web3('https://rpc.hypra.network');
   // const web3 = new Web3('https://data-seed-prebsc-2-s1.bnbchain.org:8545');
       const erc20Contract = new this.web3Object.eth.Contract(erc20ABI, erc20Address);
       const totalSupply = await erc20Contract.methods.totalSupply().call();
@@ -304,7 +304,7 @@ async bakePizza() {
                 from: this.metamaskAccount
             });
         } else {
-            console.log('Amount does not exceed approved amount, proceeding to buyEggs');
+            console.log('Amount does not exceed approved amount, proceeding to hire workers');
         }
     } catch (error) {
         console.error('Error checking approved amount or approving ERC20 token transfer:', error);
@@ -317,11 +317,11 @@ async bakePizza() {
         await this.contractInstance.methods.buyEggs(upline, finalInputAmount.toString()).send({
             from: this.metamaskAccount
         });
-        console.log('Eggs bought successfully!');
-        this.notify('Eggs bought successfully!');
+        console.log('New workers hired!');
+        this.notify('New workers hired!');
     } catch (error) {
-        console.error('Error buying eggs:', error);
-        this.notify('Error buying eggs');
+        console.error('Error hiring workers:', error);
+        this.notify('Error hiring workers');
     }
 },
 
