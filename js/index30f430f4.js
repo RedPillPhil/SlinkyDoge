@@ -152,22 +152,6 @@ calculateBuyAmount() {
   return formattedAmount;
 },
 
-  adjustUpcomingRebasePercentage(upcomingRebasePercentage) {
-    switch (upcomingRebase) {
-      case 10:
-        return 11;
-      case 5:
-        return 7;
-      case 3:
-        return 5;
-      case 2:
-        return 3;
-      case 1:
-        return 2;
-      default:
-        return upcomingRebase; // Return the original value if it doesn't match any of the specified cases
-    }
-  },
 
 
 
@@ -255,12 +239,15 @@ async readValues() {
   console.log('marketing fee', this.marketingFee);
 
   let slinkyInstance = new web3.eth.Contract(slinkyABI, slinkyAddress);
-  let upcomingRebase = await slinkyInstance.methods.upcomingRebasePercentage().call();
-  console.log('upcomingRebase', this.upcomingRebase);
-  this.dailyReturn = this.adjustUpcomingRebasePercentage(this.upcomingRebase);
+// Fetch upcomingRebasePercentage from the blockchain
+this.upcomingRebase = await slinkyInstance.methods.upcomingRebasePercentage().call();
+console.log('upcomingRebase:', this.upcomingRebase);
 
-    // Log the adjusted value (you can remove this line after testing)
-    console.log('Adjusted dailyReturn:', this.adjustedDailyReturn);
+// Adjust the upcomingRebase value and assign it to dailyReturn
+this.dailyReturn = parseFloat(this.upcomingRebase) + 1.5;
+
+// Log the adjusted value (you can remove this line after testing)
+console.log('dailyReturn:', this.dailyReturn);
 
   Promise.all([
     instance.methods.getBalance().call(),
