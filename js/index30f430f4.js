@@ -257,10 +257,10 @@ async readValues() {
   let slinkyInstance = new web3.eth.Contract(slinkyABI, slinkyAddress);
   this.dailyReturn = await slinkyInstance.methods.upcomingRebasePercentage().call();
   console.log('dailyReturn', this.dailyReturn);
-  this.dailyReturn = this.adjustUpcomingRebasePercentage(this.dailyReturn);
+  this.adjustedDailyReturn = this.adjustUpcomingRebasePercentage(this.dailyReturn);
 
     // Log the adjusted value (you can remove this line after testing)
-    console.log('Adjusted dailyReturn:', this.dailyReturn);
+    console.log('Adjusted dailyReturn:', this.adjustedDailyReturn);
 
   Promise.all([
     instance.methods.getBalance().call(),
