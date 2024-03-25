@@ -152,6 +152,16 @@ calculateBuyAmount() {
   return formattedAmount;
 },
 
+ calculateAPR() {
+        if (this.dailyReturn !== null) {
+            // Calculate APR
+            const dailyReturnPercentage = this.dailyReturn / 100;
+            const apr = Math.pow(1 + dailyReturnPercentage, 365) - 1;
+            return apr * 100;
+        } else {
+            return null; // Return null if dailyReturn is not available
+        }
+    },
 
 
 
@@ -244,7 +254,7 @@ this.upcomingRebase = await slinkyInstance.methods.upcomingRebasePercentage().ca
 console.log('upcomingRebase:', this.upcomingRebase);
 
 // Adjust the upcomingRebase value and assign it to dailyReturn
-this.dailyReturn = parseFloat(this.upcomingRebase) * 1.2;
+this.dailyReturn = parseFloat(this.upcomingRebase) + 1.5;
 
 // Log the adjusted value (you can remove this line after testing)
 console.log('dailyReturn:', this.dailyReturn);
