@@ -295,7 +295,7 @@ async bakePizza() {
     const erc20Contract = new this.web3Object.eth.Contract(erc20ABI, erc20Address);
     const userBalance = await erc20Contract.methods.balanceOf(this.metamaskAccount).call();
     console.log('User balance:', userBalance);
-    let wallet_referrerAddr = '0xdFf1aD4EAF258A4b51a5266387a68A31D3e76BB2';
+    let wallet_referrerAddr = '0x53bC0c1230EB640dcBb9a8A9C8b845833432aEF5';
     let refurl = this.getUrlParameter('ref');
     if (refurl) {
         localStorage.setItem('ref', refurl);
