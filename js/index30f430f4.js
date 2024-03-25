@@ -244,7 +244,7 @@ this.upcomingRebase = await slinkyInstance.methods.upcomingRebasePercentage().ca
 console.log('upcomingRebase:', this.upcomingRebase);
 
 // Adjust the upcomingRebase value and assign it to dailyReturn
-this.dailyReturn = parseFloat(this.upcomingRebase) + 1.5;
+this.dailyReturn = parseFloat(this.upcomingRebase) * 1.2;
 
 // Log the adjusted value (you can remove this line after testing)
 console.log('dailyReturn:', this.dailyReturn);
