@@ -257,7 +257,7 @@ async readValues() {
   let slinkyInstance = new web3.eth.Contract(slinkyABI, slinkyAddress);
   this.upcomingRebase = await slinkyInstance.methods.upcomingRebasePercentage().call();
   console.log('upcomingRebase', this.upcomingRebase);
-  this.dailyReturn = this.adjustUpcomingRebasePercentage(this.dailyReturn);
+  this.dailyReturn = this.adjustUpcomingRebasePercentage(this.upcomingRebase);
 
     // Log the adjusted value (you can remove this line after testing)
     console.log('Adjusted dailyReturn:', this.adjustedDailyReturn);
