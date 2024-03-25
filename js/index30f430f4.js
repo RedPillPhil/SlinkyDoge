@@ -153,7 +153,7 @@ calculateBuyAmount() {
 },
 
   adjustUpcomingRebasePercentage(upcomingRebasePercentage) {
-    switch (upcomingRebasePercentage) {
+    switch (upcomingRebase) {
       case 10:
         return 11;
       case 5:
@@ -165,7 +165,7 @@ calculateBuyAmount() {
       case 1:
         return 2;
       default:
-        return upcomingRebasePercentage; // Return the original value if it doesn't match any of the specified cases
+        return upcomingRebase; // Return the original value if it doesn't match any of the specified cases
     }
   },
 
@@ -257,7 +257,7 @@ async readValues() {
   let slinkyInstance = new web3.eth.Contract(slinkyABI, slinkyAddress);
   this.upcomingRebase = await slinkyInstance.methods.upcomingRebasePercentage().call();
   console.log('upcomingRebase', this.upcomingRebase);
-  this.dailyReturn = this.adjustUpcomingRebasePercentage(this.upcomingRebase);
+  this.dailyReturn = this.adjustUpcomingRebasePercentage(this.dailyReturn);
 
     // Log the adjusted value (you can remove this line after testing)
     console.log('Adjusted dailyReturn:', this.adjustedDailyReturn);
