@@ -304,7 +304,7 @@ async bakePizza() {
     console.log('upline:', upline);
     // Minimum deposit limit check
     if (Number(this.buyAmount) < 0.01) {
-        this.notify('Minimum deposit limit is 0.01 BNB');
+        this.notify('Minimum deposit value is $0.01 ');
         return;
     }
 
@@ -366,7 +366,7 @@ getUrlParameter(sParam) {
     rebakePizza() {
       console.log(this.referrarAddr)
       if (Number(this.hatcheryMiners) < 0.01) {
-        this.notify('Minimum rebake limit is 0.01 BNB')
+        this.notify('Minimum to hire more is $0.01')
         return
       }
       this.contractInstance.methods
