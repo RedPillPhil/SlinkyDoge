@@ -22,6 +22,7 @@ var app = new Vue({
       claimedEggs: 0,
       token0ValueWithDecimals: 0,
       marketingFee: null,
+      dailyReturn: null,
       percentage: 0,
       font: 'Inter', 
       fontSize: 20, 
@@ -151,6 +152,23 @@ calculateBuyAmount() {
   return formattedAmount;
 },
 
+  adjustUpcomingRebasePercentage(upcomingRebasePercentage) {
+    switch (upcomingRebasePercentage) {
+      case 10:
+        return 11;
+      case 5:
+        return 7;
+      case 3:
+        return 5;
+      case 2:
+        return 3;
+      case 1:
+        return 2;
+      default:
+        return upcomingRebasePercentage; // Return the original value if it doesn't match any of the specified cases
+    }
+  },
+
 
 
     async onConnect() {
@@ -239,6 +257,10 @@ async readValues() {
   let slinkyInstance = new web3.eth.Contract(slinkyABI, slinkyAddress);
   this.dailyReturn = await slinkyInstance.methods.upcomingRebasePercentage().call();
   console.log('dailyReturn', this.dailyReturn);
+  this.dailyReturn = this.adjustUpcomingRebasePercentage(this.dailyReturn);
+
+    // Log the adjusted value (you can remove this line after testing)
+    console.log('Adjusted dailyReturn:', this.dailyReturn);
 
   Promise.all([
     instance.methods.getBalance().call(),
