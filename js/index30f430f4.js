@@ -152,16 +152,6 @@ calculateBuyAmount() {
   return formattedAmount;
 },
 
- calculateAPR() {
-        if (this.dailyReturn !== null) {
-            // Calculate APR
-            const dailyReturnPercentage = this.dailyReturn / 100;
-            const apr = Math.pow(1 + dailyReturnPercentage, 365) - 1;
-            return apr * 100;
-        } else {
-            return null; // Return null if dailyReturn is not available
-        }
-    },
 
 
 
