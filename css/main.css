@@ -250,7 +250,7 @@ footer .socialMedias img {
 
 .home .mainContent .dataRow .value {
     font-weight: 600;
-    font-size: 22px;
+    font-size: 16px;
     color: white
 }
 
@@ -375,7 +375,7 @@ footer .socialMedias img {
     display: flex;
     align-content: center;
     margin-top: 20px;
-    justify-content: space-between
+    justify-content: space-between;
 }
 
 .home .mainContent .contractInfo img {
@@ -383,18 +383,21 @@ footer .socialMedias img {
 }
 
 .home .mainContent .contractInfo .data {
-    width: 65%
+    width: 65%;
+    
 }
 
 .home .mainContent .contractInfo .data h1 {
     color: white;
     font-size: 25px;
     font-weight: 700;
-    margin-bottom: 10px
+    margin-bottom: 10px;
 }
 
 .home .mainContent .contractInfo .data .dataRow {
-    font-size: 17px
+    font-size: 14px;
+    line-height: 1; /* Adjust the line height to reduce space between lines */
+    padding: 1px 0;
 }
 
 .home .mainContent .referral {
