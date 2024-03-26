@@ -190,8 +190,8 @@ calculateBuyAmount() {
   const totalSupply = await erc20Contract.methods.totalSupply().call();
   const userBalance = await erc20Contract.methods.balanceOf(this.metamaskAccount).call();
   const reserves = await erc20Contract.methods.getReserves().call();
-  const reserve0 = reserves._reserve0;
-  const reserve1 = reserves._reserve1; 
+  const reserve0 = reserves._reserve1;
+  const reserve1 = reserves._reserve0; 
   console.log('reserve1:', reserve1);
   const proportion = userBalance / totalSupply;
   console.log('proportion:', proportion);
