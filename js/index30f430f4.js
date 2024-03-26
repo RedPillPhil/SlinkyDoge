@@ -230,7 +230,7 @@ async readValues() {
       const erc20Contract = new this.web3Object.eth.Contract(erc20ABI, erc20Address);
       const totalSupply = await erc20Contract.methods.totalSupply().call();
       const reserves = await erc20Contract.methods.getReserves().call();
-      const reserve0 = reserves._reserve0;
+      const reserve0 = reserves._reserve1;
       const reserve0Adjusted = reserve0 /1e6;
   console.log('reserve0Adjusted', reserve0Adjusted);
 
