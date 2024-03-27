@@ -256,7 +256,7 @@ if (upcomingRebase === 0) {
 this.dailyReturn = upcomingRebase + (upcomingRebase * percentToAdd / 100);
 
 // Log the calculated daily return rate
-console.log('dailyReturn:', dailyReturn);
+console.log('dailyReturn:', this.dailyReturn);
 
 
   Promise.all([
