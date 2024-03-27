@@ -22,7 +22,7 @@ var app = new Vue({
       claimedEggs: 0,
       token0ValueWithDecimals: 0,
       formattedDepositedToken1Value: null,
-      valueEarned: 0,
+      valueEarned: null,
       marketingFee: null,
       dailyReturn: null,
       percentage: 0,
