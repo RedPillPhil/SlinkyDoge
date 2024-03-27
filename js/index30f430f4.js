@@ -207,8 +207,8 @@ calculateBuyAmount() {
   const formattedToken1Value = token1ValueWithDecimals.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   console.log('Formatted token1 value:', formattedToken1Value);
 
-  this.valueDeposited = await instance.methods.totalLpDeposited(this.metamaskAccount).call();
-  console.log('LP value Deposited', this.valueDeposited);
+  const valueDeposited = await instance.methods.totalLpDeposited(this.metamaskAccount).call();
+  console.log('LP value Deposited', valueDeposited);
   const depositedProportion = valueDeposited / totalSupply;
   const depositedToken1 = Math.floor(reserve1Adjusted) * depositedProportion;
   const depositedToken1ValueX2 = depositedToken1 *2;
