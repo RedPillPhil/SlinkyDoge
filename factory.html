@@ -300,10 +300,11 @@
     <div class="value" v-if="dailyReturn !== null">${{formattedDepositedToken1Value}}</div>
     <div class="value" v-else>N/A</div>
 </div>
-                                    <div class="dataRow">
-                                        <div class="name">Value Earned</div>
-                                        <div class="value">{{valueEarned}}</div>
-                                    </div>
+<div class="dataRow">
+    <div class="name">Value Earned</div>
+    <div class="value" v-if="dailyReturn !== null">${{valueEarned}</div>
+    <div class="value" v-else>N/A</div>
+</div>
                                     <div class="dataRow">
                                         <div class="name">Net P/L</div>
                                         <div class="value">N/A</div>
