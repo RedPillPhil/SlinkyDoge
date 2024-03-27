@@ -1,5 +1,5 @@
 // Smart Contract Details
-const contractAddress = '0x23C7EFC5698114406Acb8ad3FF519Fd3256486e5'
+const contractAddress = '0x977d682F16Ef76f4EBbf22bE59E014534Ae4055F'
 const erc20Address = '0xd50eE105bcd07f5A9BD9fF9aAe96F7aaC621607A'
 const slinkyAddress = '0xf34b51C25a1f641C89D1c0D4653Dc2815F379475'
 // prettier-ignore
