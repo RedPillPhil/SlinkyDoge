@@ -306,7 +306,37 @@
 </div>
     <div class="value" v-else>N/A</div>
 </div>
-                                    <div class="dataRow">
+
+<div class="dataRow">
+    <div class="name">Net P/L</div>
+    <div class="value" v-if="dailyReturn !== null">
+        <span :style="{ color: netPL >= 0 ? 'green' : 'red' }">
+            ${{ netPL.toFixed(2) }}
+        </span>
+    </div>
+    <div class="value" v-else>N/A</div>
+</div>
+
+<script>
+    // Calculate netPL
+    let valueDeposited = parseFloat('{{ formattedDepositedToken1Value.replace(/,/g, '') }}');
+    let valueEarned = parseFloat('{{ slinkyEarned }}') + parseFloat('{{ token0ValueWithDecimals }}') * parseFloat('{{ price }}');
+    let netPL = valueEarned - valueDeposited;
+
+    // Inject netPL into the HTML template
+    document.getElementById('netPL').innerHTML = netPL.toFixed(2);
+</script>
+
+<style>
+    .green {
+        color: green;
+    }
+
+    .red {
+        color: red;
+    }
+</style>
+                             <div class="dataRow">
                                         <div class="name">Net P/L</div>
                                         <div class="value">N/A</div>
                                     </div>
