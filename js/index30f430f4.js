@@ -253,7 +253,7 @@ if (upcomingRebase === 0) {
 }
 
 // Calculate the adjusted daily return rate using the same formula as in the Solidity contract
-this.dailyReturn = upcomingRebase + adjustmentFactor + (upcomingRebase * percentToAdd / 100);
+this.dailyReturn = upcomingRebase + (upcomingRebase * percentToAdd / 100);
 
 // Log the calculated daily return rate
 console.log('dailyReturn:', dailyReturn);
