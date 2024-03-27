@@ -237,6 +237,8 @@ async readValues() {
   let instance = new web3.eth.Contract(contractABI, contractAddress);
   this.marketingFee = await instance.methods.calculateSalesTax(this.metamaskAccount).call();
   console.log('marketing fee', this.marketingFee);
+  this.valueDeposited = await instance.methods.totalLpDeposited(this.metamaskAccount).call();
+  console.log('LP value Deposited', valueDepositedl);
 
   let slinkyInstance = new web3.eth.Contract(slinkyABI, slinkyAddress);
 // Fetch upcomingRebasePercentage from the blockchain
