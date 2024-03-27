@@ -21,6 +21,7 @@ var app = new Vue({
       getMyEggs: 0,
       claimedEggs: 0,
       token0ValueWithDecimals: 0,
+      formattedDepositedToken1Value: null,
       marketingFee: null,
       dailyReturn: null,
       percentage: 0,
@@ -216,7 +217,7 @@ calculateBuyAmount() {
   console.log('depositedtoken1value with decimals:', depositedToken1ValueWithDecimals);
   const formattedDepositedToken1Value = depositedToken1ValueWithDecimals.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   console.log('Formatted depositedtoken1 value:', formattedDepositedToken1Value);
-
+  this.formattedDepositedToken1Value = depositedToken1ValueWithDecimals;
 
 
         
