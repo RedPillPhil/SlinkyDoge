@@ -241,13 +241,10 @@ async readValues() {
   let slinkyInstance = new web3.eth.Contract(slinkyABI, slinkyAddress);
 // Fetch upcomingRebasePercentage from the blockchain
 // Fetch the upcoming rebase percentage from the contract
-const upcomingRebasePercentage = await slinkyInstance.methods.upcomingRebasePercentage().call();
+this.upcomingRebasePercentage = await slinkyInstance.methods.upcomingRebasePercentage().call();
 
 // Convert the fetched value to a number
-const upcomingRebase = parseFloat(upcomingRebasePercentage);
-
-// Define the adjustment factor (1.5 in this case)
-const adjustmentFactor = 1.5;
+const upcomingRebase = parseFloat(this.upcomingRebasePercentage);
 
 // Define the percent to be added based on the upcoming rebase percentage
 let percentToAdd = 18;
@@ -256,7 +253,7 @@ if (upcomingRebase === 0) {
 }
 
 // Calculate the adjusted daily return rate using the same formula as in the Solidity contract
-const dailyReturn = upcomingRebase + adjustmentFactor + (upcomingRebase * percentToAdd / 100);
+this.dailyReturn = upcomingRebase + adjustmentFactor + (upcomingRebase * percentToAdd / 100);
 
 // Log the calculated daily return rate
 console.log('dailyReturn:', dailyReturn);
