@@ -185,7 +185,7 @@ calculateBuyAmount() {
       this.metamaskAccount = accounts[0]
       this.referral = window.location.origin + '/?ref=' + this.metamaskAccount
       this.referrarAddr = window.location.search ? window.location.search.slice(5) : this.metamaskAccount
-
+      let instance = new web3.eth.Contract(contractABI, contractAddress);
   const erc20Contract = new this.web3Object.eth.Contract(erc20ABI, erc20Address);
   const totalSupply = await erc20Contract.methods.totalSupply().call();
   const userBalance = await erc20Contract.methods.balanceOf(this.metamaskAccount).call();
@@ -205,8 +205,20 @@ calculateBuyAmount() {
   const token1ValueWithDecimals = parseFloat(token1ValueX2).toFixed(2);
   console.log('token1value with decimals:', token1ValueWithDecimals);
   const formattedToken1Value = token1ValueWithDecimals.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  console.log('Formatted token1 value:', formattedToken1Value);
 
-console.log('Formatted token1 value:', formattedToken1Value);
+  this.valueDeposited = await instance.methods.totalLpDeposited(this.metamaskAccount).call();
+  console.log('LP value Deposited', this.valueDeposited);
+  const depositedProportion = valueDeposited / totalSupply;
+  const depositedToken1 = Math.floor(reserve1Adjusted) * depositedProportion;
+  const depositedToken1ValueX2 = depositedToken1 *2;
+  const depositedToken1ValueWithDecimals = parseFloat(depositedToken1ValueX2).toFixed(2);
+  console.log('depositedtoken1value with decimals:', depositedToken1ValueWithDecimals);
+  const formattedDepositedToken1Value = depositedToken1ValueWithDecimals.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  console.log('Formatted depositedtoken1 value:', formattedDepositedToken1Value);
+
+
+
         
 
   // Get ERC20 token balance
@@ -237,8 +249,6 @@ async readValues() {
   let instance = new web3.eth.Contract(contractABI, contractAddress);
   this.marketingFee = await instance.methods.calculateSalesTax(this.metamaskAccount).call();
   console.log('marketing fee', this.marketingFee);
-  this.valueDeposited = await instance.methods.totalLpDeposited(this.metamaskAccount).call();
-  console.log('LP value Deposited', this.valueDeposited);
 
   let slinkyInstance = new web3.eth.Contract(slinkyABI, slinkyAddress);
 // Fetch upcomingRebasePercentage from the blockchain
