@@ -223,7 +223,7 @@ calculateBuyAmount() {
 
 const slinkyEarnedRaw = await instance.methods.totalSlinkyEarned(this.metamaskAccount).call();
 this.slinkyEarned = parseFloat(slinkyEarnedRaw) * 1e-6;
-this.price = reserve0 / reserve1;
+this.price = reserve1 / reserve0;
 
         
 
