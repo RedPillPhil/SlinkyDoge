@@ -22,6 +22,7 @@ var app = new Vue({
       claimedEggs: 0,
       token0ValueWithDecimals: 0,
       formattedDepositedToken1Value: null,
+      valueEarned: 0,
       marketingFee: null,
       dailyReturn: null,
       percentage: 0,
@@ -219,6 +220,11 @@ calculateBuyAmount() {
   console.log('Formatted depositedtoken1 value:', formattedDepositedToken1Value);
   this.formattedDepositedToken1Value = depositedToken1ValueWithDecimals;
 
+const slinkyEarnedRaw = await instance.methods.totalSlinkyEarned(this.metamaskAccount).call();
+const slinkyEarned = parseFloat(slinkyEarnedRaw) * 1e-6;
+const slinkyEarnedTotal = slinkyEarned + token0ValueWithDecimals;
+const price = reserve0 / reserve1;
+this.valueEarned = slinkyEarnedTotal * price;
 
         
 
