@@ -295,11 +295,11 @@
     <div class="value" v-if="marketingFee !== null">{{ ((1000 - marketingFee) / 10).toFixed(1) }}%</div>
     <div class="value" v-else>N/A</div>
 </div>
-
-                                 <div class="dataRow">
-                            <div class="name">Value Deposited</div>
-                                        <div class="value">N/A</div>
-                                    </div>
+<div class="dataRow">
+    <div class="name">Value Deposited</div>
+    <div class="value" v-if="dailyReturn !== null">{{formattedDepositedToken1Value}}</div>
+    <div class="value" v-else>N/A</div>
+</div>
                                     <div class="dataRow">
                                         <div class="name">Value Earned</div>
                                         <div class="value">N/A</div>
