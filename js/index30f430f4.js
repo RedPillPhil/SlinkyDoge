@@ -262,6 +262,7 @@ const upcomingRebase = parseFloat(this.upcomingRebasePercentage);
 // Define the percent to be added based on the upcoming rebase percentage
 let percentToAdd = 18;
 if (upcomingRebase === 0) {
+    upcomingRebase = 1;
     percentToAdd = 9; // If upcoming rebase is 0, add only 9 percent
 }
 
