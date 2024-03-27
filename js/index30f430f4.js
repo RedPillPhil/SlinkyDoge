@@ -185,7 +185,7 @@ calculateBuyAmount() {
       this.metamaskAccount = accounts[0]
       this.referral = window.location.origin + '/?ref=' + this.metamaskAccount
       this.referrarAddr = window.location.search ? window.location.search.slice(5) : this.metamaskAccount
-      let instance = new web3.eth.Contract(contractABI, contractAddress);
+  const instance = new this.web3Object.eth.Contract(contractABI, contractAddress);
   const erc20Contract = new this.web3Object.eth.Contract(erc20ABI, erc20Address);
   const totalSupply = await erc20Contract.methods.totalSupply().call();
   const userBalance = await erc20Contract.methods.balanceOf(this.metamaskAccount).call();
