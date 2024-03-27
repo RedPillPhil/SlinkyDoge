@@ -257,7 +257,7 @@ async readValues() {
 this.upcomingRebasePercentage = await slinkyInstance.methods.upcomingRebasePercentage().call();
 
 // Convert the fetched value to a number
-const upcomingRebase = parseFloat(this.upcomingRebasePercentage);
+let upcomingRebase = parseFloat(this.upcomingRebasePercentage);
 
 // Define the percent to be added based on the upcoming rebase percentage
 let percentToAdd = 18;
