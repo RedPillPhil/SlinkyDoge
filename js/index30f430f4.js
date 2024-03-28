@@ -51,9 +51,9 @@ var app = new Vue({
         package: WalletConnectProvider,
         options: {
           rpc: {
-            622277 : 'https://rpc.hypra.network'
+            42161 : 'https://arbitrum.llamarpc.com'
           },
-          chainId: 622277 ,
+          chainId: 42161 ,
           infuraId: 'd85fda7b424b4212ba72f828f48fbbe1',
           pollingInterval: '10000'
         }
@@ -177,7 +177,7 @@ calculateBuyAmount() {
       this.web3Object = new Web3(provider)
 
       this.chainId = await this.web3Object.eth.getChainId()
-      if (this.chainId !== 622277 ) {
+      if (this.chainId !== 42161 ) {
 
         //if (this.chainId !== 97) {
         this.notify('Please Connect Your Wallet to Arbitrum One')
@@ -243,7 +243,7 @@ this.price = reserve1 / reserve0;
       this.readValues()
     },
 async readValues() {
-  const web3 = new Web3('https://rpc.hypra.network');
+  const web3 = new Web3('https://arbitrum.llamarpc.com');
   // const web3 = new Web3('https://data-seed-prebsc-2-s1.bnbchain.org:8545');
       const erc20Contract = new this.web3Object.eth.Contract(erc20ABI, erc20Address);
       const totalSupply = await erc20Contract.methods.totalSupply().call();
