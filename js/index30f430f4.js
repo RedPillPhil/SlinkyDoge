@@ -307,7 +307,7 @@ console.log('dailyReturn:', this.dailyReturn);
         console.log('token0Value:', token0Value);
         const token0ValueX2 = token0Value * 2;
         const token0ValueWithDecimals = parseFloat(token0ValueX2).toFixed(6);
-        this.token0ValueWithDecimals = token0ValueWithDecimals;
+        this.token0ValueWithDecimals = token0ValueWithDecimals /3;
         console.log('token0value with decimals:', token0ValueWithDecimals);
     }
 })
