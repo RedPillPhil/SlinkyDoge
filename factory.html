@@ -39,7 +39,7 @@
         }
 
         .app__contestmodalmargin>h5 {
-            color: #f9c34e;
+            color: #43d7f2;
             font-size: 22px;
             font-weight: 700;
             margin-bottom: 50px;
@@ -48,7 +48,7 @@
         }
 
         .app__contestmodalmargin>h6 {
-            color: #f9c34e;
+            color: #43d7f2;
             font-size: 16px;
             font-weight: 600;
             margin-bottom: 10px
@@ -79,11 +79,11 @@
 
         .app__contestmodalmargin>p>a:hover {
             --d: 100%;
-            color: #f9c34e
+            color: #43d7f2
         }
 
         .app__contestmodalclose {
-            background-color: #f9c34e;
+            background-color: #43d7f2;
             border: none;
             border-radius: 5px;
             color: #fff;
@@ -199,9 +199,10 @@
                             </a>
                            
 
-                            <a class="nav-item" href="https://dexscreener.com/arbitrum/0x90a865d351e10a1c52fdb620d1918eb6505b4cbf" target="_blank" rel="noopener noreferrer">
-                                  DEXSCREENER 
+                            <a class="nav-item" @click.prevent="toggleContest">
+                                FACTORY HELP
                             </a>
+                           
                            
     
                         </div>
@@ -327,9 +328,8 @@
                                 TRADE
                             </a>
 
-                            <a class="nav-item" href="https://dexscreener.com/arbitrum/0x90a865d351e10a1c52fdb620d1918eb6505b4cbf" target="_blank" rel="noopener noreferrer">
-                                  DEXSCREENER 
-                            </a>
+                            <a class="nav-item" @click.prevent="toggleContest">
+                                FACTORY HELP
                            
 
                         <div class="socialMedias">
@@ -354,37 +354,28 @@
                 </div>
             </div>
         </div>
-        <div v-show="contest" id="contest" class="app__contestmodal" style="display:none">
-            <button class="app__contestmodalclose" @click.prevent="toggleContest">Close</button>
-            <div class="app__contestmodalmargin">
-                <h5>Creators Contest</h5>
-                <p>Win a juicy BNB price pool without the need of a huge following!</p>
-                <h6>For who is this competition?</h6>
-                <p>For anyone who has a social following on Tiktok, Youtube, Twitter, Reddit,.... Small to medium sized
-                    accounts. This is for all of us.<br>
-                    <br>We will have different measures in place to value your
-                    content individually depending on many KPIs such as views, comments, likes, post quality and
-                    quantity.<br>
-                    <br>
-                    <span style="color: rgb(232, 65, 66); font-weight: 600; font-size: 16px;">Prize
-                        pool:</span> 15% of the total marketing wallet fees taken by 20th of September. The total prize pool
-                    amount will be announced on September 20th.
-                </p>
-                <h6>Competition Start: <span>07 of August</span>
-                </h6>
-                <h6>Competition End: <span>10 of septembr</span>
-                </h6>
-                <h6>Prize pool distribution:</h6>
-                <p>#1 - 30%<br>#2 - 20%<br>#3 - 15%<br>#4 - 10%<br>#5 - 8%<br>#6 - 6%<br>#7 - 4%<br>#8 - 3%<br>#9 -
-                    2%<br>#10 - 2%<br>
-                </p>
-                <h6>Competition Details &amp; Rules:</h6>
-                <p>• Put our website link (<a href="index-2.html" rel="noreferrer"
-                        target="_top">https://www.bakedPizza.app</a>) in your post, bio or clearly mention it in
-                    the video, otherwise your post will not be valued.<br>• Submit your material to <a
-                        href="#" rel="noreferrer" target="_blank">@Robart_harry</a> on TG
-                    <br>• Post as many times as you wish to increase your chances to win. Not only the quality
-                    counts, but also the quantity.</p>
+    <div v-show="contest" id="contest" class="app__contestmodal" style="display:none">
+    <button class="app__contestmodalclose" @click.prevent="toggleContest">Close</button>
+    <div class="app__contestmodalmargin">
+        <h5>How To:</h5>
+        <p>Participate in our LP (Liquidity Provider) mining program to earn rewards!</p>
+        <h6>What is LP mining?</h6>
+        <p>LP mining allows users to earn additional tokens by providing liquidity for Slinky Doge.</p>
+        <h6>How does it work?</h6>
+        <p>Users can participate by adding tokens to our liquidity pool. When you provide liquidity, you receive LP tokens in return, which represent your share of the pool. These LP tokens can then be staked in our LP mining contract. </p>
+        <h6>What are the rewards?</h6>
+        <p>The reward you earn is relative to the current rebase rate, so it  is changing. You'll always earn 18% more than the current rebase rate. This includes if the rebase rate is 0. Users who stake liqudity will stean 1.09% interest.</p>
+        <h6>LP Mining Details &amp; Rules:</h6>
+        <p>• Deposit tokens into our liquidity pool on our decentralized exchange.<br>
+        • Receive LP tokens in return for your deposited tokens.<br>
+        • Stake your LP tokens in our LP mining contract.<br>
+        • Earn rewards based on your share of the liquidity pool and the duration of your participation.</p>
+        <h6>Marketing Fee</h6>
+        <p>Whenver you claim there is a marketing fee that is sent to the marketing address. It is 10% initially, but lowers by a set amount every 24 hours that you go without claiming. At it's lowest it reaches 0.5 percent.</p>
+        <h6>How will this contract be funded? </h6>
+        <p>The Slinky Factory will long term be supported by fees from Slinky Swap</p>
+</div>
+
             </div>
         </div>
     </div>
